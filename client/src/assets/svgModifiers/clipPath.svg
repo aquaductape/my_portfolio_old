@@ -1,0 +1,7 @@
+      <clipPath id="myClip">
+    <!--
+      Everything outside the circle will be
+      clipped and therefore invisible.
+    -->
+    <circle class="clipPath-circle" cx="16" cy="16" r="1" />
+  </clipPath>

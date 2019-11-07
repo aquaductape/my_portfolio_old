@@ -87,7 +87,7 @@
           <feBlend id="feBlend9651" result="blend5" mode="lighten" in2="componentTransfer" in="blend2" />
           <feColorMatrix id="feColorMatrix9653" result="colormatrix5"
             values="-1 1 0 0 0 -1 1 0 0 0 -1 1 0 0 0 0 0 0 0 1 " type="matrix" in="blend5" />
-          <feFlood id="feFlood9655" result="flood" flood-color="rgba(200, 200, 200, 255)" flood-opacity="1" />
+          <feFlood id="feFlood9655" class="skills-icons-hue-color" result="flood" flood-color="rgba(200, 200, 200, 255)" flood-opacity="1" />
           <feComposite k4="0" k3="0" k2="0" id="feComposite9657" result="composite1" k1="1" operator="arithmetic"
             in2="flood" in="colormatrix5" />
           <feGaussianBlur id="feGaussianBlur9659" result="blur" stdDeviation="0.01" />

@@ -80,13 +80,22 @@ export default function SVGIcon({
           dangerouslySetInnerHTML={{ __html: clipElInner }}
         ></clipPath>
       ) : null}
-      <use href={`#${svgId}`} xlinkHref={svgId} filter={`url(#${filterId})`} />
       <use
+        xlinkHref={`#${svgId}`}
         href={`#${svgId}`}
-        xlinkHref={svgId}
+        filter={`url(#${filterId})`}
+      />
+      {/* white circle is used because when the two icons overlap, there's a feathery outline */}
+      {/* As the clip circle enlarges, it is in synced with the white circle thus getting rid of the outline*/}
+      {/* Pros: the cleanest effect during animation */}
+      {/* Cons: the circle should match the background */}
+      {/* If the backdrop is colorfull, or dynamic, the best solution is to use opacity after animation is done */}
+      <circle className="clipPath-circle" fill="#fff" cx="16" cy="16" r="1" />
+      <use
+        xlinkHref={`#${svgId}`}
+        href={`#${svgId}`}
         clipPath={`url(#${clipPathId})`}
       />
-      {clipPathEl}
       <g style={{ display: 'none' }}>
         <g id={svgId} dangerouslySetInnerHTML={{ __html: svgInner }}></g>
       </g>

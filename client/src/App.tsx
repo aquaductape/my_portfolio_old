@@ -13,7 +13,7 @@ const App: React.FC = () => {
       <AboutMe></AboutMe>
       <Skills></Skills>
       <Projects></Projects>
-      <Graph></Graph>
+      {/* <Graph></Graph> */}
       <SVGDefs></SVGDefs>
     </Fragment>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Element } from 'react-scroll';
 
 import npmSVG from '../assets/icons/npm.svg';
 import jsSVG from '../assets/icons/js.svg';
@@ -19,7 +20,9 @@ import clipPath from '../assets/svgModifiers/clipPath.svg';
 export default function Skills() {
   return (
     <section className="skills">
-      <h2 id="skills">Skills</h2>
+      <Element name="skills">
+        <h2 id="skills">Skills</h2>
+      </Element>
       <div>
         <ul className="skills-group">
           <li className="skills-item">

@@ -1,13 +1,16 @@
 import React from 'react';
+import { Element } from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faCode } from '@fortawesome/free-solid-svg-icons';
 import ticTacToeImg from '../assets/tic-tac-toe.png';
-import facifyImg from '../assets/facify.jpg';
+import facifyImg from '../assets/facify.png';
 
 export default function Projects() {
   return (
     <section className="projects">
-      <h2>Projects</h2>
+      <Element name="projects">
+        <h2>Projects</h2>
+      </Element>
 
       <div className="card-container">
         <div className="card">

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { ReactComponent as Logo } from '../../assets/logo.svg';
+import { Link, animateScroll as Scroll } from 'react-scroll';
+import { ReactComponent as LogoSimple } from '../../assets/logo_simple.svg';
 
 export default function Navigation() {
   const [toggleMenu, setMenu] = useState(false);
   const [toggleHeader, setHeader] = useState(false);
-  let prev = window.scrollY;
+  // window.pageYOffset is IE9+ browser compatible
+  let prev = window.scrollY || window.pageYOffset;
 
   useEffect(() => {
     // when reloading the page scroll event runs twice
@@ -15,34 +17,37 @@ export default function Navigation() {
   }, []);
 
   const handleHeader = () => {
-    if (window.scrollY < 55) return;
-    if (window.scrollY > prev) {
+    const windowScrollY = window.scrollY || window.pageYOffset;
+    if (windowScrollY < 55) return;
+    // if the scroll repeats the same number ignore it
+    if (windowScrollY === prev) return;
+    if (windowScrollY > prev) {
       // scrolling down
-      setHeader(true);
-      prev = window.scrollY;
+      setHeader(() => true);
+      prev = windowScrollY;
     } else {
       // scrolling up
-      setHeader(false);
-      prev = window.scrollY;
+      setHeader(() => false);
+      prev = windowScrollY;
     }
   };
 
-  const hideHeader = () => {
+  const hideHeaderCss = () => {
     if (toggleMenu) return '';
 
     return toggleHeader ? 'hide' : '';
   };
 
-  const hideNavLinks = () => {
+  const hideNavLinksCss = () => {
     return !toggleMenu ? 'hide' : '';
   };
 
   return (
     <header>
-      <div className={`${hideHeader()} sticky header-bar`}>
+      <div className={`${hideHeaderCss()} sticky header-bar`}>
         <div className="logo">
-          <a href="about-me">
-            <Logo></Logo>
+          <a onClick={Scroll.scrollToTop}>
+            <LogoSimple></LogoSimple>
           </a>
         </div>
 
@@ -55,23 +60,48 @@ export default function Navigation() {
           <div className="menu-line"></div>
         </button>
       </div>
-      <div className={`${hideNavLinks()} sticky nav-mobile`}>
+      <div className={`${hideNavLinksCss()} sticky nav-mobile`}>
         <nav>
           <ul className="nav-mobile-group">
             <li className="nav-list">
-              <a className="nav-list-link" href="#about-me">
+              <a
+                className="nav-list-link"
+                href="#about-me"
+                onClick={() => {
+                  Scroll.scrollToTop();
+                  setMenu(!toggleMenu);
+                }}
+              >
                 About Me
               </a>
             </li>
             <li className="nav-list">
-              <a className="nav-list-link" href="#skills">
+              <Link
+                className="nav-list-link"
+                href="#skills"
+                to="skills"
+                spy={true}
+                smooth={true}
+                duration={500}
+                onClick={() => setMenu(!toggleMenu)}
+                offset={-60}
+              >
                 Skills
-              </a>
+              </Link>
             </li>
             <li className="nav-list">
-              <a className="nav-list-link" href="#projects">
+              <Link
+                className="nav-list-link"
+                href="#projects"
+                to="projects"
+                spy={true}
+                smooth={true}
+                duration={500}
+                onClick={() => setMenu(!toggleMenu)}
+                offset={-60}
+              >
                 Projects
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

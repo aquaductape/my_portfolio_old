@@ -1,13 +1,7 @@
 @import 'keyframes.scss';
 
 $text-color: #ccc;
-$primary-bg: linear-gradient(
-  180deg,
-  rgba(96, 103, 136, 1) 0%,
-  rgba(58, 62, 82, 1) 73%,
-  rgba(46, 52, 77, 1) 100%
-);
-$nav-bg: #0024c5;
+$primary-color: #011daa;
 
 * {
   box-sizing: border-box;
@@ -25,7 +19,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: $primary-bg;
+  background: #fff;
   color: $text-color;
 }
 
@@ -44,10 +38,6 @@ li {
 
 a {
   color: inherit;
-}
-
-header {
-  height: 60px;
 }
 
 .sticky {
@@ -72,21 +62,20 @@ section {
 /************ navigation ***********/
 .header-bar {
   display: flex;
-  background: $nav-bg;
+  background: $primary-color;
   padding: 10px;
   justify-content: space-between;
   align-items: center;
   transition: 1000ms transform;
-  box-shadow: 0px 0px 5px 2px #00000024;
   z-index: 2;
 }
 
 .nav-mobile {
-  background: $nav-bg;
+  background: $primary-color;
+  box-shadow: 0px 15px 32px -7px #0000009c;
   z-index: 1;
   top: 60px;
-  // transform: translateY(100%);
-  transition: 500ms transform;
+  transition: 500ms transform, 500ms box-shadow;
 }
 
 .nav-mobile-group {
@@ -186,12 +175,45 @@ section {
 }
 
 .hide.nav-mobile {
+  box-shadow: 0px 15px 32px -7px #00000000;
   transform: translateY(-150%);
 }
 
 /************ About Me ************/
 
 .about-me {
+  padding: 0;
+}
+
+.about-me-content {
+  padding: 60px 10px 80px 10px;
+  min-height: 80vh;
+  background: $primary-color;
+}
+
+.about-me-social-links {
+  background: linear-gradient(180deg, #011daa 6%, #001890 50%, white 50%);
+}
+
+.social-links {
+  width: 250px;
+  padding: 15px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 16px 12px -7px #0000000f;
+
+  a {
+    font-size: 30px;
+    transition: color 500ms;
+
+    &:hover,
+    &:focus {
+      color: $primary-color;
+    }
+  }
 }
 
 /************ Skills **************/
@@ -204,26 +226,32 @@ section {
   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 }
 
+.skills-icons-hue-color {
+  flood-color: $primary-color !important;
+}
+
 .skills-item {
   text-align: center;
   font-size: 0.625rem;
 
+  .clipPath-circle {
+    transform: scale(0);
+    transition: 800ms;
+    transform-origin: center;
+  }
   &:hover,
   &:focus {
-    #myClip circle {
-      transform: scale(15);
-      transition: 500ms;
+    .clipPath-circle {
+      transform: scale(20);
+      transition: 1500ms;
     }
   }
 }
 
-#myClip circle {
-  transform: scale(0);
-  transition: 500ms;
-  transform-origin: center;
-}
-
 /************ Projects **************/
+
+.projects {
+}
 
 .card-container {
   display: grid;
@@ -234,8 +262,10 @@ section {
 .card-img {
   display: block;
   height: 200px;
-  object-fit: cover;
+  overflow: hidden;
+  height: 100%;
   width: 100%;
+  border-radius: 40px;
 }
 
 /************** chart **************/

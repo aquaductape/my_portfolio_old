@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-      <defs id="defs2">
+      <!-- <defs id="defs2">
         <linearGradient id="a" x1="9.3479996" y1="-80.996002" x2="9.3479996" y2="-78.788002"
           gradientTransform="matrix(1,0,0,-1,0,-59.52)" gradientUnits="userSpaceOnUse">
           <stop offset="0" stop-color="#fffa8f" id="stop4337" />
@@ -96,5 +96,28 @@
             in2="blend6" in="blend2" />
           <feComposite id="feComposite9665" result="composite3" operator="in" in2="SourceGraphic" />
         </filter>
-      </defs>
+      </defs> -->
+        <defs>
+    <filter id="icon-color-hue" color-interpolation-filters="sRGB">
+      <feColorMatrix type="hueRotate" values="0" result="colormatrix1"/>
+      <feColorMatrix in="colormatrix1" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1" result="colormatrix2"/>
+      <feColorMatrix in="colormatrix1" values="0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1" result="colormatrix3"/>
+      <feColorMatrix in="colormatrix1" values="0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 1" result="colormatrix4"/>
+      <feBlend in="colormatrix2" in2="colormatrix3" mode="darken" result="blend1"/>
+      <feBlend in="blend1" in2="colormatrix4" mode="darken" result="blend2"/>
+      <feBlend in="colormatrix2" in2="colormatrix3" mode="lighten" result="blend3"/>
+      <feBlend in="blend3" in2="colormatrix4" mode="lighten" result="blend4"/>
+      <feComponentTransfer in="blend4" result="componentTransfer">
+        <feFuncR type="linear" slope="0"/>
+      </feComponentTransfer>
+      <feBlend in="blend2" in2="componentTransfer" mode="screen" result="blend5"/>
+      <feColorMatrix in="blend5" values="-1 1 0 0 0 -1 1 0 0 0 -1 1 0 0 0 0 0 0 0 1" result="colormatrix5"/>
+      <feFlood  class="skills-icons-hue-color" flood-opacity="1" flood-color="#000FFB" result="flood"/>
+      <feComposite in="colormatrix5" in2="flood" operator="arithmetic" k1="1" result="composite1"/>
+      <feGaussianBlur stdDeviation=".01" result="blur"/>
+      <feBlend in2="blur" mode="multiply" result="blend6"/>
+      <feComposite in="blend2" in2="blend6" operator="arithmetic" k1="10" k2="1" k3="10" result="composite2"/>
+      <feComposite in2="SourceGraphic" operator="in" result="composite3"/>
+    </filter>
+  </defs> 
     </svg>

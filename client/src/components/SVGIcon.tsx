@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { changeColor } from "../utils/svgTools";
+import axios from "axios";
 
 type SVGIconProps = {
   content: string;
@@ -13,20 +14,19 @@ type SVGIconProps = {
 
 export default function SVGIcon({
   content,
-  viewBox = '0 0 32 32',
+  viewBox = "0 0 32 32",
   clipPathEl = null,
   svgId,
-  filterId = 'icon-color-hue',
+  filterId = "icon-color-hue",
   enableTitle = false
 }: SVGIconProps) {
   const [svgs, setSvg] = useState<string[] | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isErrored, setIsErrored] = useState(false);
-  const clipPathId = svgId + '__clipPath';
+  const clipPathId = svgId + "__clipPath";
 
   useEffect(() => {
     const fetchSVG = async (contentUrl: string, clipUrl: string | null) => {
-      // debugger;
       try {
         const content = await axios(contentUrl);
 
@@ -43,13 +43,13 @@ export default function SVGIcon({
     };
 
     fetchSVG(content, clipPathEl);
-  }, []);
+  }, [content, clipPathEl]);
 
-  if (isErrored) throw new Error('svg error');
-  let svgTitle = '';
-  let svgDefs = '';
-  let svgInner = '';
-  let clipElInner = '';
+  if (isErrored) throw new Error("svg error");
+  let svgTitle = "";
+  let svgDefs = "";
+  let svgInner = "";
+  let clipElInner = "";
 
   if (svgs) {
     const [content, clipEl] = svgs;
@@ -59,12 +59,12 @@ export default function SVGIcon({
       (_1, p1, _2, p2) => {
         if (p1) svgTitle = p1;
         if (p2) svgDefs = p2;
-        return '';
+        return "";
       }
     );
 
     if (clipEl) {
-      clipElInner = clipEl.replace(/<clipPath(.*?)>|<\/clipPath>/, '');
+      clipElInner = clipEl.replace(/<clipPath(.*?)>|<\/clipPath>/, "");
     }
   }
 
@@ -80,25 +80,27 @@ export default function SVGIcon({
           dangerouslySetInnerHTML={{ __html: clipElInner }}
         ></clipPath>
       ) : null}
-      <use
-        xlinkHref={`#${svgId}`}
-        href={`#${svgId}`}
-        filter={`url(#${filterId})`}
-      />
+      <g
+        id={svgId}
+        dangerouslySetInnerHTML={{ __html: changeColor(svgInner) }}
+      ></g>
       {/* white circle is used because when the two icons overlap, there's a feathery outline */}
       {/* As the clip circle enlarges, it is in synced with the white circle thus getting rid of the outline*/}
       {/* Pros: the cleanest effect during animation */}
       {/* Cons: the circle should match the background */}
       {/* If the backdrop is colorfull, or dynamic, the best solution is to use opacity after animation is done */}
-      <circle className="clipPath-circle" fill="#fff" cx="16" cy="16" r="1" />
-      <use
-        xlinkHref={`#${svgId}`}
-        href={`#${svgId}`}
-        clipPath={`url(#${clipPathId})`}
+      <circle
+        className="clipPath-circle"
+        fill="url(#match-background)"
+        cx="16"
+        cy="16"
+        r="1"
       />
-      <g style={{ display: 'none' }}>
-        <g id={svgId} dangerouslySetInnerHTML={{ __html: svgInner }}></g>
-      </g>
+      <g
+        id={svgId}
+        clipPath={`url(#${clipPathId})`}
+        dangerouslySetInnerHTML={{ __html: svgInner }}
+      ></g>
     </svg>
   ) : null;
 }

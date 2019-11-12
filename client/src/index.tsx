@@ -1,10 +1,15 @@
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
+import cssVars from 'css-vars-ponyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+cssVars({
+  onlyLegacy: true
+});
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

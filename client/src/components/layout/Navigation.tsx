@@ -1,61 +1,79 @@
-import React, { useState, useEffect } from 'react';
-import { Link, animateScroll as Scroll } from 'react-scroll';
-import { ReactComponent as LogoSimple } from '../../assets/logo_simple.svg';
+import React, { useState, useEffect } from "react";
+import { Link, animateScroll as Scroll } from "react-scroll";
+import { ReactComponent as LogoSimple } from "../../assets/logo_simple.svg";
+import Settings from "../Settings";
 
 export default function Navigation() {
   const [toggleMenu, setMenu] = useState(false);
   const [toggleHeader, setHeader] = useState(false);
-  // window.pageYOffset is IE9+ browser compatible
-  let prev = window.scrollY || window.pageYOffset;
+  const [toggleSettings, setSettings] = useState(false);
 
   useEffect(() => {
+    // window.pageYOffset is IE9+ browser compatible
+    let prev = window.scrollY || window.pageYOffset;
+
+    const handleHeader = () => {
+      const windowScrollY = window.scrollY || window.pageYOffset;
+      if (windowScrollY < 55) return;
+      // if the scroll repeats the same number ignore it
+      if (windowScrollY === prev) return;
+      if (windowScrollY > prev) {
+        // scrolling down
+        setHeader(() => true);
+        prev = windowScrollY;
+      } else {
+        // scrolling up
+        setHeader(() => false);
+        prev = windowScrollY;
+      }
+    };
+
     // when reloading the page scroll event runs twice
     // timeout prevents that
     setTimeout(() => {
-      window.addEventListener('scroll', handleHeader);
+      window.addEventListener("scroll", handleHeader);
     }, 1000);
   }, []);
 
-  const handleHeader = () => {
-    const windowScrollY = window.scrollY || window.pageYOffset;
-    if (windowScrollY < 55) return;
-    // if the scroll repeats the same number ignore it
-    if (windowScrollY === prev) return;
-    if (windowScrollY > prev) {
-      // scrolling down
-      setHeader(() => true);
-      prev = windowScrollY;
-    } else {
-      // scrolling up
-      setHeader(() => false);
-      prev = windowScrollY;
-    }
-  };
-
   const hideHeaderCss = () => {
-    if (toggleMenu) return '';
+    if (toggleMenu) return "";
 
-    return toggleHeader ? 'hide' : '';
+    return toggleHeader ? "hide" : "";
   };
 
   const hideNavLinksCss = () => {
-    return !toggleMenu ? 'hide' : '';
+    return !toggleMenu ? "hide" : "";
+  };
+
+  const onToggleSettings = () => {
+    setSettings(() => !toggleSettings);
+  };
+
+  const onToggleMenu = () => {
+    setSettings(() => !toggleSettings);
+    setMenu(() => !toggleMenu);
   };
 
   return (
     <header>
       <div className={`${hideHeaderCss()} sticky header-bar`}>
         <div className="logo">
-          <a onClick={Scroll.scrollToTop}>
+          <a
+            href="#page-top"
+            onClick={e => {
+              e.preventDefault();
+              Scroll.scrollToTop();
+            }}
+          >
             <LogoSimple></LogoSimple>
           </a>
         </div>
 
         <button
-          className={`nav-btn hambuger-menu ${toggleMenu ? 'active' : ''}`}
+          className={`nav-btn hambuger-menu ${toggleMenu ? "active" : ""}`}
           aria-pressed={toggleMenu}
-          aria-label={toggleMenu ? 'close mobile nav' : 'open mobile nav'}
-          onClick={() => setMenu(!toggleMenu)}
+          aria-label={toggleMenu ? "close mobile nav" : "open mobile nav"}
+          onClick={onToggleMenu}
         >
           <div className="menu-line"></div>
         </button>
@@ -78,7 +96,7 @@ export default function Navigation() {
             <li className="nav-list">
               <Link
                 className="nav-list-link"
-                href="#skills"
+                href="#skills-me"
                 to="skills"
                 spy={true}
                 smooth={true}
@@ -102,6 +120,15 @@ export default function Navigation() {
               >
                 Projects
               </Link>
+            </li>
+            <li className="nav-list">
+              <button
+                className="nav-list-link nav-list-btn"
+                onClick={onToggleSettings}
+              >
+                Settings V
+              </button>
+              {toggleSettings ? <Settings></Settings> : null}
             </li>
           </ul>
         </nav>

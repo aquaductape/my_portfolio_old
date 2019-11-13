@@ -1,0 +1,3 @@
+@mixin mergeProps($primary, $secondary) {
+  transition: $primary, $secondary;
+}

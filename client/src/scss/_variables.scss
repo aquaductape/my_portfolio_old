@@ -1,0 +1,10 @@
+$text-color: #0303a3;
+$primary-color: #5396f0;
+$primary-bg: #030f27;
+$transitionTheme: 800ms background-color;
+
+:root {
+  --text-color: #{$text-color};
+  --primary-color: #{$primary-color};
+  --primary-bg: #{$primary-bg};
+}

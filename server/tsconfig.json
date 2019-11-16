@@ -7,12 +7,12 @@
     "noImplicitAny": true,
     "declaration": true,
     "sourceMap": true,
-    "outDir": "./server/dist",
-    "typeRoots": ["server/src/@types"],
+    "outDir": "./dist",
+    "typeRoots": ["src/@types"],
     "baseUrl": ".",
     "paths": {
       "*": ["node_modules/*"]
     }
   },
-  "include": ["./server/src/*.ts"]
+  "include": ["./src/*.ts"]
 }

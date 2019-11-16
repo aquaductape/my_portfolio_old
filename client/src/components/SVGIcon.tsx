@@ -3,7 +3,7 @@ import { changeColor } from "../utils/svgTools";
 import axios from "axios";
 
 type SVGIconProps = {
-  content: string;
+  icon: string;
   svgId: string;
   viewBox?: string;
   clipPathEl?: string | null;
@@ -13,7 +13,7 @@ type SVGIconProps = {
 };
 
 export default function SVGIcon({
-  content,
+  icon,
   viewBox = "0 0 32 32",
   clipPathEl = null,
   svgId,
@@ -42,8 +42,8 @@ export default function SVGIcon({
       }
     };
 
-    fetchSVG(content, clipPathEl);
-  }, [content, clipPathEl]);
+    fetchSVG(icon, clipPathEl);
+  }, [icon, clipPathEl]);
 
   if (isErrored) throw new Error("svg error");
   let svgTitle = "";
@@ -79,7 +79,11 @@ export default function SVGIcon({
           id={clipPathId}
           dangerouslySetInnerHTML={{ __html: clipElInner }}
         ></clipPath>
-      ) : null}
+      ) : (
+        <clipPath id={clipPathId}>
+          <circle className="clipPath-circle" cx="16" cy="16" r="1" />
+        </clipPath>
+      )}
       <g
         id={svgId}
         dangerouslySetInnerHTML={{ __html: changeColor(svgInner) }}

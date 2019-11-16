@@ -1,83 +1,97 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import FusionCharts from 'fusioncharts';
-import TimeSeries from 'fusioncharts/fusioncharts.timeseries';
-import ReactFC from 'react-fusioncharts';
-import axios from 'axios';
-import { WakaData, WakaSchema } from '../../models/index';
+import React, { useState, useEffect, Fragment } from "react";
+import FusionCharts from "fusioncharts";
+import TimeSeries from "fusioncharts/fusioncharts.timeseries";
+import ReactFC from "react-fusioncharts";
+import axios from "axios";
+import { WakaData, WakaSchema } from "../../models/index";
 
 ReactFC.fcRoot(FusionCharts, TimeSeries);
 
 const dataSource = {
   chart: {},
   // caption: {
-  //   text: 'Web visits & downloads'
+  //   text: "Web visits & downloads"
   // },
   data: {},
   extensions: {
-    customrangeselector: {
-      enabled: '0'
+    standardRangeSelector: {
+      enabled: "1",
+      style: {
+        "button-text:active": {
+          fill: "rgb(158, 158, 158)"
+        }
+      }
+    },
+    customRangeSelector: {
+      enabled: "0"
     }
   },
   // subcaption: {
-  //   text: 'since 2015'
+  //   text: "since 2015"
   // },
   navigator: {
     enabled: false
   },
   yAxis: [
     {
-      title: '',
+      title: "",
       plot: [
         {
-          value: 'Total',
-          type: 'column'
-        },
-        {
-          value: 'Grand_Total',
-          type: 'line'
+          value: "Total",
+          type: "column"
         }
       ],
       format: {
-        suffix: ' hr'
+        suffix: "h"
       }
     }
   ],
   xAxis: {},
-  series: 'Project'
+  series: "Project"
 };
 
 export default function FusionTimeChart() {
+  const [isLoading, setLoading] = useState(true);
   const [chartConfig, setChartConfig] = useState({
     timeseriesDs: {
-      type: 'timeseries',
-      renderAt: 'container',
-      width: '112%',
-      height: '400',
+      type: "timeseries",
+      renderAt: "container",
+      width: "100%",
+      height: "400",
       dataSource
     }
   });
 
   useEffect(() => {
     const onFetchData = async () => {
-      const res = await axios.get('/api/wakatimedata');
-      const [data, schema]: [WakaData[], WakaSchema] = res.data;
-      const fusionTable = new FusionCharts.DataStore().createDataTable(
-        data,
-        schema
-      );
-      const timeseriesDs = { ...chartConfig.timeseriesDs };
-      timeseriesDs.dataSource.data = fusionTable;
-      setChartConfig({ timeseriesDs });
+      try {
+        const res = await axios.get(process.env.REACT_APP_WAKATIME_URL || "", {
+          headers: {
+            "auth-wakatime-data": process.env.REACT_APP_WAKATIME_HEADERS || ""
+          }
+        });
+        const [data, schema]: [WakaData[], WakaSchema] = res.data;
+        const fusionTable = new FusionCharts.DataStore().createDataTable(
+          data,
+          schema
+        );
+        const timeseriesDs = { ...chartConfig.timeseriesDs };
+        timeseriesDs.dataSource.data = fusionTable;
+        setChartConfig({ timeseriesDs });
+        setLoading(() => false);
+      } catch (err) {}
     };
     onFetchData();
   }, []);
 
+  // if (isLoading) return <p>Loading...</p>;
+
   return (
     <Fragment>
-      {chartConfig.timeseriesDs.dataSource.data ? (
+      {chartConfig.timeseriesDs.dataSource.data && !isLoading ? (
         <ReactFC {...chartConfig.timeseriesDs} />
       ) : (
-        'loading'
+        <p>Loading...</p>
       )}
     </Fragment>
   );

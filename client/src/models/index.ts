@@ -17,9 +17,13 @@ export type WakaSchema = [
 ];
 
 export type theme = {
-  primaryColor: string;
-  textColor: string;
-  primaryBg: string;
+  navTxtColor: "#0303a3" | "#ccc";
+  primaryTxtColor: "#5396f0" | "#011daa";
+  secondaryTxtColor: "#0303a3" | "#ccc";
+  primaryBg: "#030f27" | "#fff";
+  cardBg: "#231d55" | "#fff";
+  cardTxt: "#9288dc" | "#888";
+  btnTxt: "#000" | "#fff";
 };
 
 export interface ISettings {

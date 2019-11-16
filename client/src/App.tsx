@@ -3,7 +3,7 @@ import Navigation from "./components/layout/Navigation";
 import AboutMe from "./components/AboutMe";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
-// import Graph from './components/Graph';
+import Graph from "./components/Graph";
 import SVGDefs from "./components/SVGDefs";
 import { setTheme } from "./utils/settings";
 
@@ -17,7 +17,7 @@ const App: React.FC = () => {
       <AboutMe></AboutMe>
       <Skills></Skills>
       <Projects></Projects>
-      {/* <Graph></Graph> */}
+      <Graph></Graph>
       <SVGDefs></SVGDefs>
     </Fragment>
   );

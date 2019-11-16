@@ -6,31 +6,30 @@
 }
 
 section {
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 90px;
   padding: 10px;
 }
 
-.container {
-  width: 100%;
-  max-width: 350px;
-  margin: 0 auto;
-  overflow: hidden;
+.section-title {
+  padding-bottom: 50px;
 }
 
 /************ navigation ***********/
 .header-bar {
   display: flex;
-  background: var(--primary-color);
+  background: var(--primary-txt-color);
   padding: 10px;
   justify-content: space-between;
   align-items: center;
   transition: 1000ms transform;
   z-index: 3;
-  transition: $transitionTheme, 500ms transform;
+  transition: $transitionTheme, 500ms transform, 500ms box-shadow;
 }
 
 .nav-mobile {
-  background: var(--primary-color);
+  background: var(--primary-txt-color);
+  color: var(--secondary-txt-color);
   box-shadow: 0px 15px 32px -7px #00000042;
   z-index: 2;
   top: 60px;
@@ -60,7 +59,7 @@ section {
 }
 
 .nav-list-btn {
-  color: var(--text-color);
+  color: var(--nav-txt-color);
   border: none;
   background: none;
 }
@@ -212,6 +211,10 @@ section {
   transform: translateY(-150%);
 }
 
+.shadow.header-bar {
+  box-shadow: 0 2px 12px -3px #00000066;
+}
+
 /************ About Me ************/
 
 .about-me {
@@ -221,7 +224,8 @@ section {
 .about-me-area {
   padding: 60px 10px 30px 10px;
   min-height: 80vh;
-  background: var(--primary-color);
+  background: var(--primary-txt-color);
+  color: var(--secondary-txt-color);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -239,7 +243,7 @@ section {
 }
 
 .about-me-social-links {
-  background: var(--primary-color);
+  background: var(--primary-txt-color);
   position: relative;
   transition: $transitionTheme;
   color: #ccc;
@@ -248,6 +252,7 @@ section {
     content: "";
     position: absolute;
     bottom: 0;
+    left: 0;
     height: 50%;
     width: 100%;
     background: var(--primary-bg);
@@ -290,7 +295,7 @@ section {
 
     &:hover,
     &:focus {
-      color: var(--primary-color);
+      color: var(--primary-txt-color);
     }
   }
 }
@@ -308,12 +313,12 @@ section {
 }
 
 .skills-icons-hue-color {
-  flood-color: var(--primary-color);
+  flood-color: var(--primary-txt-color);
 }
 
 #gradient-to-solid {
   stop {
-    stop-color: var(--primary-color);
+    stop-color: var(--primary-txt-color);
   }
 }
 
@@ -324,7 +329,7 @@ section {
 }
 
 .skills-item {
-  color: var(--primary-color);
+  color: var(--primary-txt-color);
   text-align: center;
   font-size: 0.625rem;
   font-size: 0.725rem;
@@ -349,23 +354,136 @@ section {
 .projects {
 }
 
+.card {
+  margin: 10px 10px;
+  width: 100%;
+  background: var(--card-bg);
+  border-radius: 20px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  color: var(--card-txt);
+  box-shadow: 0 8px 16px 1px #2d2d2d42;
+}
+
 .card-container {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-.card {
-  margin: 0 20px;
-  width: 100%;
+.card-content {
+  text-align: center;
+  padding: 0px 15px 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-img {
   width: 100%;
   border-radius: 40px;
+  box-shadow: 0 14px 24px -6px #13131391;
+}
+
+.card-title {
+  order: 1;
+}
+.card-link-container {
+  order: 2;
+}
+.card-pg {
+  font-size: 1.25rem;
+  // text-align: center;
+  line-height: 1.5;
+  order: 3;
+}
+
+.card-link-item {
+  background: var(--primary-txt-color);
+  color: var(--btn-txt);
+  padding: 5px 10px;
+  border-radius: 30px;
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+/********** coding-activity ******/
+
+.coding-activity-title {
+  margin-bottom: 5px;
+  padding-bottom: 0;
 }
 
 /************** chart **************/
 #chartobject-1 {
   margin-left: -40px !important;
+}
+
+.legendGroupText {
+  text {
+    fill: var(--primary-txt-color);
+    // font-size: 15px !important;
+    font-weight: bold !important;
+  }
+}
+
+.legendGroupClip {
+  clip-path: none !important;
+}
+
+.toolbarContent {
+  text {
+    fill: var(--primary-txt-color);
+  }
+
+  path {
+    stroke: var(--primary-txt-color);
+  }
+}
+
+.hideScrollGroup,
+.creditGroup {
+  display: none;
+}
+
+.gridLineGroup {
+  opacity: 0.3;
+  path {
+    stroke: var(--primary-txt-color);
+  }
+}
+
+.canvasTropo {
+  path {
+    stroke: var(--primary-txt-color);
+  }
+}
+
+.axisLeft,
+.axisBottom {
+  text {
+    fill: var(--primary-txt-color);
+    font-size: 15px !important;
+  }
+  path {
+    stroke: var(--primary-txt-color);
+  }
+}
+
+.axisLeft {
+  g:first-child {
+    display: none;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.fusioncharts-container {
+  height: 600px !important;
+  svg {
+    height: 600px !important;
+  }
 }

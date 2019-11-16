@@ -1,19 +1,27 @@
 import cssVars from "css-vars-ponyfill";
-import { theme } from "../models/index";
+import { theme, ISettings } from "../models/index";
 
-const settingsConfig = {
+const settingsConfig: ISettings = {
   darkMode: false,
   hideHeader: true,
   headerTop: false,
   darkTheme: {
-    primaryColor: "#5396f0",
-    textColor: "#ccc",
-    primaryBg: "#030f27"
+    navTxtColor: "#0303a3",
+    primaryTxtColor: "#5396f0",
+    secondaryTxtColor: "#0303a3",
+    primaryBg: "#030f27",
+    cardBg: "#231d55",
+    cardTxt: "#9288dc",
+    btnTxt: "#000"
   },
   lightTheme: {
-    primaryColor: "#011daa",
-    textColor: "#ccc",
-    primaryBg: "#fff"
+    navTxtColor: "#ccc",
+    primaryTxtColor: "#011daa",
+    secondaryTxtColor: "#ccc",
+    primaryBg: "#fff",
+    cardBg: "#fff",
+    cardTxt: "#888",
+    btnTxt: "#fff"
   }
 };
 
@@ -30,18 +38,32 @@ export const setTheme = (theme: string) => {
 
 const changeCSSVars = (theme: theme) => {
   document.documentElement.style.setProperty(
-    "--primary-color",
-    theme.primaryColor
+    "--primary-txt-color",
+    theme.primaryTxtColor
   );
-  document.documentElement.style.setProperty("--text-color", theme.textColor);
+  document.documentElement.style.setProperty(
+    "--nav-txt-color",
+    theme.navTxtColor
+  );
+  document.documentElement.style.setProperty(
+    "--secondary-txt-color",
+    theme.secondaryTxtColor
+  );
   document.documentElement.style.setProperty("--primary-bg", theme.primaryBg);
+  document.documentElement.style.setProperty("--card-bg", theme.cardBg);
+  document.documentElement.style.setProperty("--card-txt", theme.cardTxt);
+  document.documentElement.style.setProperty("--btn-txt", theme.btnTxt);
 
   // IE11 lacks css :root, this ponyfill is initialized in main file in order to be used
   cssVars({
     variables: {
-      "--primary-color": theme.primaryColor,
-      "--text-color": theme.textColor,
-      "--primary-bg": theme.primaryBg
+      "--nav-txt-color": theme.navTxtColor,
+      "--primary-txt-color": theme.primaryTxtColor,
+      "--secondary-txt-color": theme.secondaryTxtColor,
+      "--primary-bg": theme.primaryBg,
+      "--card-bg": theme.cardBg,
+      "--card-txt": theme.cardTxt,
+      "--btn-txt": theme.btnTxt
     }
   });
 };

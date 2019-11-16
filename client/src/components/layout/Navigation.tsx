@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, animateScroll as Scroll } from "react-scroll";
-import { ReactComponent as LogoSimple } from "../../assets/logo_simple.svg";
+import { ReactComponent as LogoSimple } from "../../assets/logo_monochrome.svg";
 import Settings from "../Settings";
 
 export default function Navigation() {
   const [toggleMenu, setMenu] = useState(false);
   const [toggleHeader, setHeader] = useState(false);
+  const [toggleHeaderShadow, setHeaderShadow] = useState(false);
   const [toggleSettings, setSettings] = useState(false);
 
   useEffect(() => {
@@ -14,6 +15,11 @@ export default function Navigation() {
 
     const handleHeader = () => {
       const windowScrollY = window.scrollY || window.pageYOffset;
+      if (windowScrollY > 15) {
+        setHeaderShadow(() => true);
+      } else {
+        setHeaderShadow(() => false);
+      }
       if (windowScrollY < 55) return;
       // if the scroll repeats the same number ignore it
       if (windowScrollY === prev) return;
@@ -41,6 +47,13 @@ export default function Navigation() {
     return toggleHeader ? "hide" : "";
   };
 
+  const shadowHeaderCss = () => {
+    if (toggleMenu) return "";
+    if (toggleHeader) return "";
+
+    return toggleHeaderShadow ? "shadow" : "";
+  };
+
   const hideNavLinksCss = () => {
     return !toggleMenu ? "hide" : "";
   };
@@ -50,13 +63,15 @@ export default function Navigation() {
   };
 
   const onToggleMenu = () => {
-    setSettings(() => !toggleSettings);
+    setSettings(() => false);
     setMenu(() => !toggleMenu);
   };
 
   return (
     <header>
-      <div className={`${hideHeaderCss()} sticky header-bar`}>
+      <div
+        className={`${shadowHeaderCss()} ${hideHeaderCss()} sticky header-bar`}
+      >
         <div className="logo">
           <a
             href="#page-top"
@@ -99,6 +114,7 @@ export default function Navigation() {
                 href="#skills-me"
                 to="skills"
                 spy={true}
+                hashSpy={true}
                 smooth={true}
                 duration={500}
                 onClick={() => setMenu(!toggleMenu)}
@@ -113,6 +129,7 @@ export default function Navigation() {
                 href="#projects"
                 to="projects"
                 spy={true}
+                hashSpy={true}
                 smooth={true}
                 duration={500}
                 onClick={() => setMenu(!toggleMenu)}

@@ -1,10 +1,13 @@
-import React from 'react';
-import FusionTimeChart from './Fusion/FusionTimeChart';
+import React from "react";
+import FusionTimeChart from "./Fusion/FusionTimeChart";
 
 export default function Graph() {
   return (
-    <section>
-      <h2>What I've been up to for the past week...</h2>
+    <section className="coding-activity">
+      <h2 className="section-title coding-activity-title">
+        Coding Activity over the Past Week
+      </h2>
+      <p>(Powered by wakatime.com)</p>
       <div className="container">
         <FusionTimeChart />
       </div>

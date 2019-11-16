@@ -1,34 +1,17 @@
-import React, { useState } from "react";
-import { ISettings } from "../models";
+import React from "react";
 import { setTheme } from "../utils/settings";
 
 export default function Settings() {
-  const isChecked = (): boolean => {
+  const isDarkMode = (): boolean => {
     const item = localStorage.getItem("theme");
     if (!item) return true;
 
     return item === "dark" ? true : false;
   };
-  const [settings] = useState<ISettings>({
-    darkMode: isChecked(),
-    hideHeader: true,
-    headerTop: false,
-    darkTheme: {
-      primaryColor: "#5396f0",
-      textColor: "#ccc",
-      primaryBg: "#030f27"
-    },
-    lightTheme: {
-      primaryColor: "#011daa",
-      textColor: "#ccc",
-      primaryBg: "#fff"
-    }
-  });
 
   const onInputDarkMode = (
     e: React.MouseEvent<HTMLInputElement, MouseEvent>
   ) => {
-    const { darkTheme, lightTheme } = settings;
     if (e.currentTarget.checked) {
       setTheme("dark");
     } else {
@@ -37,16 +20,41 @@ export default function Settings() {
   };
 
   return (
-    <div className="toggle-btn-area">
-      <label htmlFor="cb1">Dark Mode</label>
-      <input
-        className="tgl tgl-light"
-        id="cb1"
-        type="checkbox"
-        defaultChecked={settings.darkMode}
-        onClick={onInputDarkMode}
-      />
-      <label className="tgl-btn" htmlFor="cb1"></label>
-    </div>
+    <ul className="toggle-area">
+      <li className="toggle-area-item">
+        <label htmlFor="cb-darkMode">Dark Mode</label>
+        <input
+          className="tgl tgl-light"
+          id="cb-darkMode"
+          type="checkbox"
+          defaultChecked={isDarkMode()}
+          onClick={onInputDarkMode}
+        />
+        <label className="tgl-btn" htmlFor="cb-darkMode"></label>
+      </li>
+
+      <li className="toggle-area-item">
+        <label htmlFor="cb-hideNav">Hide Navigation when Scrolling Down</label>
+        <input
+          className="tgl tgl-light"
+          id="cb-hideNav"
+          type="checkbox"
+          defaultChecked={isDarkMode()}
+          onClick={() => {}}
+        />
+        <label className="tgl-btn" htmlFor="cb-hideNav"></label>
+      </li>
+      <li className="toggle-area-item">
+        <label htmlFor="cb-navTop">Keep Navigation at Top</label>
+        <input
+          className="tgl tgl-light"
+          id="cb-navTop"
+          type="checkbox"
+          defaultChecked={isDarkMode()}
+          onClick={() => {}}
+        />
+        <label className="tgl-btn" htmlFor="cb-navTop"></label>
+      </li>
+    </ul>
   );
 }

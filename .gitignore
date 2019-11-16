@@ -12,7 +12,9 @@ node_modules
 build
 server
 
+# Environmental Variables
 config
+.env*
 
 # misc
 .DS_Store
@@ -28,3 +30,6 @@ yarn-error.log*
 # Local Netlify folder
 .netlify
 netlify.toml
+
+# Server
+dist

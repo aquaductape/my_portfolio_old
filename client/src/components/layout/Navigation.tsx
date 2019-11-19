@@ -5,7 +5,7 @@ import { Link, animateScroll as Scroll } from "react-scroll";
 import Collapse from "@kunukn/react-collapse";
 import { ReactComponent as LogoSimple } from "../../assets/logo_monochrome.svg";
 import Settings from "../Settings";
-import { isNavVisible } from "../../utils/settings";
+import { isNavVisible, isNavTop } from "../../utils/settings";
 
 export default function Navigation() {
   const hamburgerMenuEl = useRef<HTMLButtonElement>(null);
@@ -15,7 +15,7 @@ export default function Navigation() {
   const [toggleSettings, setSettings] = useState(false);
   const [navSettings, setNavSettings] = useState({
     navVisible: isNavVisible(),
-    navTop: false
+    navTop: isNavTop()
   });
 
   useEffect(() => {
@@ -53,6 +53,7 @@ export default function Navigation() {
 
   const hideHeaderCss = () => {
     if (!navSettings.navVisible) return "";
+    if (navSettings.navTop) return "";
     if (toggleMenu) return "";
 
     return toggleHeader ? "hide" : "";

@@ -43,6 +43,13 @@ export const isNavVisible = (): boolean => {
   return item === "true";
 };
 
+export const isNavTop = (): boolean => {
+  const item = localStorage.getItem("navRelative");
+  if (!item) return false;
+
+  return item === "true";
+};
+
 export const setNavRelative = (isRelative: boolean): void => {
   localStorage.setItem("navRelative", isRelative.toString());
 };

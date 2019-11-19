@@ -9,6 +9,8 @@ import { setTheme } from "./utils/settings";
 
 const theme = localStorage.getItem("theme");
 if (theme) setTheme(theme);
+const navVisible = localStorage.getItem("navVisible");
+if (!navVisible) localStorage.setItem("navVisible", "true");
 
 const App: React.FC = () => {
   return (

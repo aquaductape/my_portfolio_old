@@ -36,6 +36,21 @@ export const setTheme = (theme: string) => {
   }
 };
 
+export const isNavVisible = (): boolean => {
+  const item = localStorage.getItem("navVisible");
+  if (!item) return true;
+
+  return item === "true";
+};
+
+export const setNavRelative = (isRelative: boolean): void => {
+  localStorage.setItem("navRelative", isRelative.toString());
+};
+
+export const setNavVisible = (isVisible: boolean): void => {
+  localStorage.setItem("navVisible", isVisible.toString());
+};
+
 const changeTheme = (theme: theme): void => {
   changeMetaTagTileColor(theme);
   changeCSSVars(theme);

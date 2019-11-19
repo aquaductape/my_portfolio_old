@@ -1,13 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link, animateScroll as Scroll } from "react-scroll";
+import Collapse from "@kunukn/react-collapse";
 import { ReactComponent as LogoSimple } from "../../assets/logo_monochrome.svg";
 import Settings from "../Settings";
+import { isNavVisible } from "../../utils/settings";
 
 export default function Navigation() {
+  const hamburgerMenuEl = useRef<HTMLButtonElement>(null);
   const [toggleMenu, setMenu] = useState(false);
   const [toggleHeader, setHeader] = useState(false);
   const [toggleHeaderShadow, setHeaderShadow] = useState(false);
   const [toggleSettings, setSettings] = useState(false);
+  const [navSettings, setNavSettings] = useState({
+    navVisible: isNavVisible(),
+    navTop: false
+  });
 
   useEffect(() => {
     // window.pageYOffset is IE9+ browser compatible
@@ -15,12 +24,13 @@ export default function Navigation() {
 
     const handleHeader = () => {
       const windowScrollY = window.scrollY || window.pageYOffset;
+
       if (windowScrollY > 15) {
         setHeaderShadow(() => true);
       } else {
         setHeaderShadow(() => false);
       }
-      if (windowScrollY < 55) return;
+      if (windowScrollY < 55) return setHeader(() => false);
       // if the scroll repeats the same number ignore it
       if (windowScrollY === prev) return;
       if (windowScrollY > prev) {
@@ -42,6 +52,7 @@ export default function Navigation() {
   }, []);
 
   const hideHeaderCss = () => {
+    if (!navSettings.navVisible) return "";
     if (toggleMenu) return "";
 
     return toggleHeader ? "hide" : "";
@@ -58,19 +69,44 @@ export default function Navigation() {
     return !toggleMenu ? "hide" : "";
   };
 
+  const chevronDownCss = () => {
+    return toggleSettings ? "up" : "";
+  };
+
+  const navTopCss = () => {
+    return navSettings.navTop ? "top" : "sticky";
+  };
   const onToggleSettings = () => {
     setSettings(() => !toggleSettings);
   };
 
   const onToggleMenu = () => {
+    const hamburgerMenu = hamburgerMenuEl.current;
+    if (hamburgerMenu) {
+      if (toggleMenu) {
+        hamburgerMenu.classList.remove("active");
+      } else {
+        hamburgerMenu.classList.add("active");
+      }
+    }
     setSettings(() => false);
     setMenu(() => !toggleMenu);
+  };
+
+  const onLink = () => {
+    const hamburgerMenu = hamburgerMenuEl.current;
+    if (hamburgerMenu) {
+      hamburgerMenu.classList.remove("active");
+    }
+
+    setSettings(() => false);
+    setMenu(() => false);
   };
 
   return (
     <header>
       <div
-        className={`${shadowHeaderCss()} ${hideHeaderCss()} sticky header-bar`}
+        className={`${shadowHeaderCss()} ${hideHeaderCss()} ${navTopCss()} header-bar`}
       >
         <div className="logo">
           <a
@@ -85,15 +121,19 @@ export default function Navigation() {
         </div>
 
         <button
-          className={`nav-btn hambuger-menu ${toggleMenu ? "active" : ""}`}
+          // using classList to add class because it removes focus visible class
+          // which is added dynamically
+          // className={`nav-btn hambuger-menu ${toggleMenu ? "active" : ""}`}
+          className="nav-btn hambuger-menu"
           aria-pressed={toggleMenu}
           aria-label={toggleMenu ? "close mobile nav" : "open mobile nav"}
           onClick={onToggleMenu}
+          ref={hamburgerMenuEl}
         >
           <div className="menu-line"></div>
         </button>
       </div>
-      <div className={`${hideNavLinksCss()} sticky nav-mobile`}>
+      <div className={`${hideNavLinksCss()} ${navTopCss()} nav-mobile`}>
         <nav>
           <ul className="nav-mobile-group">
             <li className="nav-list">
@@ -102,7 +142,8 @@ export default function Navigation() {
                 href="#about-me"
                 onClick={() => {
                   Scroll.scrollToTop();
-                  setMenu(!toggleMenu);
+                  // setMenu(!toggleMenu);
+                  onLink();
                 }}
               >
                 About Me
@@ -117,7 +158,7 @@ export default function Navigation() {
                 hashSpy={true}
                 smooth={true}
                 duration={500}
-                onClick={() => setMenu(!toggleMenu)}
+                onClick={onLink}
                 offset={-60}
               >
                 Skills
@@ -132,7 +173,7 @@ export default function Navigation() {
                 hashSpy={true}
                 smooth={true}
                 duration={500}
-                onClick={() => setMenu(!toggleMenu)}
+                onClick={onLink}
                 offset={-60}
               >
                 Projects
@@ -143,10 +184,29 @@ export default function Navigation() {
                 className="nav-list-link nav-list-btn"
                 onClick={onToggleSettings}
               >
-                Settings V
+                Settings
+                <span className={`settings-chevron ${chevronDownCss()}`}>
+                  <FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon>
+                </span>
               </button>
-              {toggleSettings ? <Settings></Settings> : null}
             </li>
+            <Collapse isOpen={toggleSettings}>
+              {/*
+              In this case it's overkill to remove content
+              but there will be many cases where dynamic content
+              is added and there needs to be a solution
+              toggleSettings ? <Settings></Settings> : null
+              */}
+              <Settings
+                navSettings={navSettings}
+                setNavSettings={setNavSettings}
+                setSettings={setSettings}
+                toggleSettings={toggleSettings}
+                toggleMenu={toggleMenu}
+                setMenu={setMenu}
+                hamburgerMenuEl={hamburgerMenuEl}
+              ></Settings>
+            </Collapse>
           </ul>
         </nav>
       </div>

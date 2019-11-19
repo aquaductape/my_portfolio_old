@@ -33,3 +33,21 @@ export interface ISettings {
   darkTheme: theme;
   lightTheme: theme;
 }
+
+export interface ISettingsReactComponent {
+  setNavSettings: React.Dispatch<
+    React.SetStateAction<{
+      navVisible: boolean;
+      navTop: boolean;
+    }>
+  >;
+  navSettings: {
+    navVisible: boolean;
+    navTop: boolean;
+  };
+  setSettings: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleSettings: boolean;
+  setMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleMenu: boolean;
+  hamburgerMenuEl: React.RefObject<HTMLButtonElement>;
+}

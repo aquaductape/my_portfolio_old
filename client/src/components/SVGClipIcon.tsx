@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { changeColor } from "../utils/svgTools";
 import axios from "axios";
+import { changeColor } from "../utils/svgTools";
 
 type SVGIconProps = {
   icon: string;
@@ -81,7 +81,7 @@ export default function SVGIcon({
         ></clipPath>
       ) : (
         <clipPath id={clipPathId}>
-          <circle className="clipPath-circle" cx="16" cy="16" r="1" />
+          <circle className={`${clipPathId}-circle`} cx="16" cy="16" r="0" />
         </clipPath>
       )}
       <g
@@ -94,11 +94,11 @@ export default function SVGIcon({
       {/* Cons: the circle should match the background */}
       {/* If the backdrop is colorfull, or dynamic, the best solution is to use opacity after animation is done */}
       <circle
-        className="clipPath-circle"
+        className={`${clipPathId}-circle`}
         fill="url(#match-background)"
         cx="16"
         cy="16"
-        r="1"
+        r="0"
       />
       <g
         id={svgId}

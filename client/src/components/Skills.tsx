@@ -1,5 +1,6 @@
 import React from "react";
 import { Element } from "react-scroll";
+import gsap from "gsap";
 
 import npmSVG from "../assets/icons/npm.svg";
 import jsSVG from "../assets/icons/js.svg";
@@ -13,9 +14,63 @@ import cssSVG from "../assets/icons/css.svg";
 import htmlSVG from "../assets/icons/html.svg";
 import mongoSVG from "../assets/icons/mongo.svg";
 
-import SVGIcon from "./SVGIcon";
+import SVGClipIcon from "./SVGClipIcon";
 
 export default function Skills() {
+  const icons = [
+    [htmlSVG, "HTML"],
+    [cssSVG, "CSS"],
+    [sassSVG, "Sass"],
+    [jsSVG, "JavaScript"],
+    [typescriptSVG, "Typescript"],
+    [reactjsSVG, "ReactJS"],
+    [gitSVG, "Git"],
+    [npmSVG, "NPM"],
+    [nodeSVG, "NodeJS"],
+    [mongoSVG, "MongoDB"],
+    [mysqlSVG, "MySQL"]
+  ];
+  gsap.defaults({ overwrite: "auto" });
+
+  const skillItems = icons.map(([icon, title], i) => {
+    const svgId = `skill-icon-${title}`;
+    const circleId = `.${svgId}__clipPath-circle`;
+    const animateIconEnter = () => {
+      gsap.fromTo(
+        circleId,
+        {
+          attr: {
+            r: 1
+          },
+          transformOrigin: "center"
+        },
+        {
+          scale: 20,
+          transformOrigin: "center",
+          ease: "power1.in",
+          duration: 1
+        }
+      );
+    };
+
+    const animateIconLeave = () => {
+      gsap.to(circleId, {
+        scale: 0,
+        duration: 0.5
+      });
+    };
+    return (
+      <li
+        key={i}
+        className="skills-item"
+        onMouseEnter={animateIconEnter}
+        onMouseLeave={animateIconLeave}
+      >
+        <SVGClipIcon svgId={svgId} icon={icon}></SVGClipIcon>
+        <p>{title}</p>
+      </li>
+    );
+  });
   return (
     <section className="skills">
       <Element name="skills">
@@ -23,55 +78,7 @@ export default function Skills() {
           Skills
         </h2>
 
-        <ul className="skills-group">
-          <li className="skills-item">
-            <SVGIcon svgId="skill-icon-html" icon={htmlSVG}></SVGIcon>
-            <p>HTML</p>
-          </li>
-          <li className="skills-item">
-            <SVGIcon svgId="skill-icon-css" icon={cssSVG}></SVGIcon>
-            <p>CSS</p>
-          </li>
-          <li className="skills-item">
-            <SVGIcon svgId="skill-icon-sass" icon={sassSVG}></SVGIcon>
-            <p>Sass</p>
-          </li>
-          <li className="skills-item">
-            <SVGIcon svgId="skill-icon-js" icon={jsSVG}></SVGIcon>
-            <p>JavaScript</p>
-          </li>
-          <li className="skills-item">
-            <SVGIcon
-              svgId="skill-icon-typescript"
-              icon={typescriptSVG}
-            ></SVGIcon>
-            <p>TypeScript</p>
-          </li>
-          <li className="skills-item">
-            <SVGIcon svgId="skill-icon-react" icon={reactjsSVG}></SVGIcon>
-            <p>ReactJS</p>
-          </li>
-          <li className="skills-item">
-            <SVGIcon svgId="skill-icon-git" icon={gitSVG}></SVGIcon>
-            <p>Git</p>
-          </li>
-          <li className="skills-item">
-            <SVGIcon svgId="skill-icon-npm" icon={npmSVG}></SVGIcon>
-            <p>NPM</p>
-          </li>
-          <li className="skills-item">
-            <SVGIcon svgId="skill-icon-node" icon={nodeSVG}></SVGIcon>
-            <p>NodeJS</p>
-          </li>
-          <li className="skills-item">
-            <SVGIcon svgId="skill-icon-mongo" icon={mongoSVG}></SVGIcon>
-            <p>MongoDB</p>
-          </li>
-          <li className="skills-item">
-            <SVGIcon svgId="skill-icon-mysql" icon={mysqlSVG}></SVGIcon>
-            <p>MySQL</p>
-          </li>
-        </ul>
+        <ul className="skills-group">{skillItems}</ul>
       </Element>
     </section>
   );

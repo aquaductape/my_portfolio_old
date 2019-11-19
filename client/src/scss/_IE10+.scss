@@ -1,5 +1,36 @@
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   /* IE10+ CSS styles go here */
+
+  .skills-title {
+    padding-bottom: 0;
+  }
+
+  .skills-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .skills-item {
+    width: 60px;
+    height: 60px;
+    margin: 0 15px;
+    margin-top: 50px;
+
+    &:last-child {
+      margin-right: auto;
+    }
+  }
+
+  @media (min-width: 770px) {
+    .skills-item {
+      width: 100px;
+      height: 100px;
+      margin: 0 15px;
+      margin-top: 70px;
+    }
+  }
+
   .about-me-area {
     display: table;
     width: 100%;

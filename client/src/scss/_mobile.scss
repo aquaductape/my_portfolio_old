@@ -1,18 +1,48 @@
-.sticky {
+.collapse-css-transition {
+  transition: height 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sticky,
+.top {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
 }
 
+.top {
+  position: absolute;
+}
+
+.disabled {
+  opacity: 0.5;
+  * {
+    cursor: default !important;
+  }
+
+  &:hover {
+    * {
+      color: inherit !important;
+    }
+  }
+}
+
 section {
   text-align: center;
-  margin-bottom: 90px;
+  margin-bottom: 160px;
   padding: 10px;
 }
 
 .section-title {
   padding-bottom: 50px;
+  font-family: "Comfortaa";
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.flex-gap {
+  margin: 0 auto;
 }
 
 /************ navigation ***********/
@@ -24,7 +54,7 @@ section {
   align-items: center;
   transition: 1000ms transform;
   z-index: 3;
-  transition: $transitionTheme, 500ms transform, 500ms box-shadow;
+  transition: $transitionTheme, transform 500ms, box-shadow 500ms, top 1s ease;
 }
 
 .nav-mobile {
@@ -33,7 +63,7 @@ section {
   box-shadow: 0px 15px 32px -7px #00000042;
   z-index: 2;
   top: 60px;
-  transition: $transitionTheme, 500ms transform, 500ms box-shadow;
+  transition: $transitionTheme, transform 500ms, box-shadow 500ms, top 1s ease;
 }
 
 .nav-mobile-group {
@@ -47,13 +77,14 @@ section {
 }
 
 .nav-list-link {
+  text-transform: uppercase;
   text-decoration: none;
   font-size: 1.25rem;
   padding: 0.5em;
   transition: 500ms color;
 
   &:hover,
-  &:focus {
+  &.focus-visible {
     color: #fff;
   }
 }
@@ -97,6 +128,15 @@ section {
   }
 }
 
+.settings-chevron {
+  display: inline-block;
+  margin-left: 10px;
+  transition: 500ms transform;
+  &.up {
+    transform: rotate(-180deg);
+  }
+}
+
 .tgl {
   display: none;
 
@@ -115,8 +155,8 @@ section {
   }
 
   + .tgl-btn {
-    outline: 0;
     display: block;
+    outline: none;
     width: 4em;
     height: 2em;
     position: relative;
@@ -145,6 +185,14 @@ section {
   }
 }
 
+.tgl-btn {
+  &.focus-visible {
+    &:after {
+      box-shadow: 0 0 0 15px #ffffff6e;
+    }
+  }
+}
+
 // themes
 .tgl-light {
   + .tgl-btn {
@@ -160,7 +208,7 @@ section {
   }
 
   &:checked + .tgl-btn {
-    background: orange;
+    background: #030f27;
   }
 }
 
@@ -245,8 +293,8 @@ section {
 .about-me-social-links {
   background: var(--primary-txt-color);
   position: relative;
-  transition: $transitionTheme;
   color: #ccc;
+  transition: $transitionTheme;
 
   &::after {
     content: "";
@@ -261,6 +309,9 @@ section {
 }
 
 .toggle-area {
+  margin: 10px auto;
+  width: 100%;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -274,6 +325,14 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  outline: none;
+}
+
+.toggle-area-item-label {
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+  }
 }
 
 .social-links {
@@ -292,6 +351,7 @@ section {
   a {
     font-size: 30px;
     transition: color 500ms;
+    cursor: pointer;
 
     &:hover,
     &:focus {
@@ -305,16 +365,23 @@ section {
 .skills {
 }
 .skills-group {
-  // display: flex;
   display: grid;
-  // flex-wrap: wrap;
   gap: 15px;
   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 }
 
-.skills-icons-hue-color {
-  flood-color: var(--primary-txt-color);
+@media (min-width: 400px) {
+  .skills-group {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
+  }
 }
+
+// .skills-icons-hue-color {
+//   flood-color: var(--primary-txt-color);
+// }
 
 #gradient-to-solid {
   stop {
@@ -356,7 +423,7 @@ section {
 
 .card {
   margin: 10px 10px;
-  width: 100%;
+  max-width: 475px;
   background: var(--card-bg);
   border-radius: 20px;
   border-top-left-radius: 50px;
@@ -371,6 +438,17 @@ section {
   flex-wrap: wrap;
 }
 
+@media (min-width: 800px) {
+  .card {
+    max-width: 355px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .card {
+    max-width: 500px;
+  }
+}
 .card-content {
   text-align: center;
   padding: 0px 15px 15px;
@@ -404,6 +482,15 @@ section {
   border-radius: 30px;
   margin-right: 5px;
   text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  transition: 500ms background-color, 500ms color;
+
+  &:hover,
+  &.focus-visible {
+    background: var(--btn-bg-focus);
+    color: var(--btn-txt-focus);
+  }
 }
 
 /********** coding-activity ******/
@@ -446,7 +533,7 @@ section {
 }
 
 .gridLineGroup {
-  opacity: 0.3;
+  opacity: 0.15;
   path {
     stroke: var(--primary-txt-color);
   }

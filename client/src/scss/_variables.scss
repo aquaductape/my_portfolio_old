@@ -1,11 +1,13 @@
-$nav-txt-color: #0303a3;
-$primary-txt-color: #5396f0;
-$secondary-txt-color: #0303a3;
-$card-bg: #231d55;
-$card-txt: #9288dc;
-$btn-txt: #000;
-$primary-bg: #030f27;
-$transitionTheme: 800ms background-color;
+$nav-txt-color: #ccc;
+$primary-txt-color: #011daa;
+$secondary-txt-color: #ccc;
+$card-bg: #fff;
+$card-txt: #888;
+$btn-txt: #fff;
+$btn-txt-focus: #fff;
+$btn-bg-focus: #000;
+$primary-bg: #fff;
+$transitionTheme: 500ms background-color;
 
 :root {
   --nav-txt-color: #{$nav-txt-color};
@@ -15,4 +17,6 @@ $transitionTheme: 800ms background-color;
   --card-bg: #{$card-bg};
   --card-txt: #{$card-txt};
   --btn-txt: #{$btn-txt};
+  --btn-txt-focus: #{$btn-txt-focus};
+  --btn-bg-focus: #{$btn-bg-focus};
 }

@@ -13,7 +13,7 @@ export default function Settings({
   const inputToggleThemeEl = useRef<HTMLInputElement>(null);
   const inputToggleNavVisibleEl = useRef<HTMLInputElement>(null);
   const inputToggleNavTopEl = useRef<HTMLInputElement>(null);
-  const [disabled, setDisabled] = useState(!navSettings.navVisible);
+  const [disabled, setDisabled] = useState(navSettings.navTop);
 
   const isDarkMode = (): boolean => {
     const item = localStorage.getItem("theme");
@@ -52,13 +52,15 @@ export default function Settings({
   ) => {
     const isChecked = e.currentTarget.checked;
     const newNavSettings = { ...navSettings };
+    const windowScrollY = window.scrollY || window.pageYOffset;
+
     newNavSettings.navTop = !newNavSettings.navTop;
 
     setNavSettings(() => ({ ...newNavSettings }));
     setNavRelative(isChecked);
     setDisabled(() => !disabled);
 
-    if (hamburgerMenuEl.current && isChecked) {
+    if (hamburgerMenuEl.current && isChecked && windowScrollY > 55) {
       hamburgerMenuEl.current.classList.remove("active");
       setMenu(() => false);
       setSettings(() => false);
@@ -92,6 +94,7 @@ export default function Settings({
   const setNavTopOnKey = () => {
     const currentEl = inputToggleNavTopEl.current;
     if (!currentEl) return;
+    const windowScrollY = window.scrollY || window.pageYOffset;
     const isChecked = currentEl.checked;
     const newNavSettings = { ...navSettings };
     newNavSettings.navTop = !newNavSettings.navTop;
@@ -100,7 +103,7 @@ export default function Settings({
     setNavRelative(isChecked);
     setDisabled(() => !disabled);
     currentEl.checked = !isChecked;
-    if (hamburgerMenuEl.current && isChecked) {
+    if (hamburgerMenuEl.current && isChecked && windowScrollY > 55) {
       hamburgerMenuEl.current.classList.remove("active");
       setMenu(() => false);
       setSettings(() => false);

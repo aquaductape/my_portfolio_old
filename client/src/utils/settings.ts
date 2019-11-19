@@ -29,14 +29,26 @@ export const setTheme = (theme: string) => {
   const { darkTheme, lightTheme } = settingsConfig;
   if (theme === "dark") {
     localStorage.setItem("theme", "dark");
-    changeCSSVars(darkTheme);
+    changeTheme(darkTheme);
   } else {
     localStorage.setItem("theme", "light");
-    changeCSSVars(lightTheme);
+    changeTheme(lightTheme);
   }
 };
 
-const changeCSSVars = (theme: theme) => {
+const changeTheme = (theme: theme): void => {
+  changeMetaTagTileColor(theme);
+  changeCSSVars(theme);
+};
+
+const changeMetaTagTileColor = (theme: theme): void => {
+  const themeColor = document.getElementById("theme-color");
+  if (themeColor) {
+    themeColor.setAttribute("content", theme.primaryTxtColor);
+  }
+};
+
+const changeCSSVars = (theme: theme): void => {
   document.documentElement.style.setProperty(
     "--primary-txt-color",
     theme.primaryTxtColor

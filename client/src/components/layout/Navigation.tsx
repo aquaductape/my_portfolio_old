@@ -25,10 +25,10 @@ export default function Navigation() {
     const handleHeader = () => {
       const windowScrollY = window.scrollY || window.pageYOffset;
 
-      if (windowScrollY > 15) {
-        setHeaderShadow(() => true);
-      } else {
+      if (windowScrollY <= 15) {
         setHeaderShadow(() => false);
+      } else {
+        setHeaderShadow(() => true);
       }
       if (windowScrollY < 55) return setHeader(() => false);
       // if the scroll repeats the same number ignore it
@@ -44,11 +44,11 @@ export default function Navigation() {
       }
     };
 
-    // when reloading the page scroll event runs twice
+    // sometime when reloading the page scroll event runs twice
     // timeout prevents that
-    setTimeout(() => {
-      window.addEventListener("scroll", handleHeader);
-    }, 1000);
+    // setTimeout(() => {
+    window.addEventListener("scroll", handleHeader);
+    // }, 1000);
   }, []);
 
   const hideHeaderCss = () => {
@@ -60,7 +60,14 @@ export default function Navigation() {
   };
 
   const shadowHeaderCss = () => {
-    if (toggleMenu) return "";
+    // Since menu slides under from header, it's shadow
+    // covers the menu as the header is transitioning out.
+    // In order to make menu appear as extension rather than seperate,
+    // this new class adds a new transition where the shadow leaves
+    // immediately
+    if (toggleMenu) return "shadow-onleave";
+    if (toggleHeaderShadow && !navSettings.navVisible) return "shadow";
+    if (navSettings.navTop) return "";
     if (toggleHeader) return "";
 
     return toggleHeaderShadow ? "shadow" : "";

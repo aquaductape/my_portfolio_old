@@ -54,7 +54,7 @@ section {
   align-items: center;
   transition: 1000ms transform;
   z-index: 3;
-  transition: $transitionTheme, transform 500ms, box-shadow 500ms, top 1s ease;
+  transition: $transitionTheme, transform 500ms, box-shadow 500ms;
 }
 
 .nav-mobile {
@@ -63,7 +63,7 @@ section {
   box-shadow: 0px 15px 32px -7px #00000042;
   z-index: 2;
   top: 60px;
-  transition: $transitionTheme, transform 500ms, box-shadow 500ms, top 1s ease;
+  transition: $transitionTheme, transform 500ms, box-shadow 500ms;
 }
 
 .nav-mobile-group {
@@ -226,7 +226,7 @@ section {
   transition: 500ms color;
 
   &:hover,
-  &:focus {
+  &:focus.visible {
     color: #fff;
   }
 }
@@ -261,6 +261,16 @@ section {
 
 .shadow.header-bar {
   box-shadow: 0 2px 12px -3px #00000066;
+  transition: $transitionTheme, transform 500ms, box-shadow 500ms 300ms;
+}
+
+// Since menu slides under from header, it's shadow
+// covers the menu as the header is transitioning out.
+// In order to make menu appear as extension rather than seperate,
+// this new class adds a new transition where the shadow leaves
+// immediately
+.shadow-quick.header-bar {
+  transition: $transitionTheme, transform 500ms, box-shadow 100ms;
 }
 
 /************ About Me ************/
@@ -402,18 +412,19 @@ section {
   font-size: 0.725rem;
   font-weight: 700;
 
+  // RIP CSS animations for IE
   .clipPath-circle {
-    transform: scale(0);
-    transition: 800ms;
-    transform-origin: center;
+    //   transform: scale(0);
+    //   transition: 800ms;
+    // transform-origin: center;
   }
-  &:hover,
-  &:focus {
-    .clipPath-circle {
-      transform: scale(20);
-      transition: 1500ms;
-    }
-  }
+  // &:hover,
+  // &:focus {
+  // .clipPath-circle {
+  //   transform: scale(20);
+  //   transition: 1500ms;
+  // }
+  // }
 }
 
 /************ Projects **************/

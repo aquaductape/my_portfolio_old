@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Navigation from "./components/layout/Navigation";
 import AboutMe from "./components/AboutMe";
-import Skills from "./components/Skills";
+import Skills from "./components/Skills/Skills";
 import Projects from "./components/Projects";
 import Graph from "./components/Graph";
 import SVGDefs from "./components/SVGDefs";

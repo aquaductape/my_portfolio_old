@@ -114,7 +114,6 @@ export default function Settings({
     const char = e.key;
     const idFor = e.currentTarget.getAttribute("for");
 
-    console.log("TCL: onLabelKeyDown -> idFor", idFor);
     if (char !== "Enter" && char !== " ") return;
     switch (idFor) {
       case "cb-navTop":

@@ -9,7 +9,8 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 cssVars({
-  onlyLegacy: true
+  onlyLegacy: true,
+  watch: true
 });
 
 ReactDOM.render(<App />, document.getElementById("root"));

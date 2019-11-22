@@ -1,11 +1,14 @@
-import React, { Fragment } from "react";
-import Navigation from "./components/layout/Navigation";
+import React, { Fragment, Suspense } from "react";
+import Navigation from "./components/layout/Navigation/Navigation";
 import AboutMe from "./components/AboutMe";
-import Skills from "./components/Skills/Skills";
 import Projects from "./components/Projects";
 import Graph from "./components/Graph";
 import SVGDefs from "./components/SVGDefs";
 import { setTheme } from "./utils/settings";
+
+const Skills = React.lazy(() =>
+  import(/* webpackChunkName: "skills" */ "./components/Skills/Skills")
+);
 
 const theme = localStorage.getItem("theme");
 if (theme) setTheme(theme);
@@ -17,7 +20,9 @@ const App: React.FC = () => {
     <Fragment>
       <Navigation></Navigation>
       <AboutMe></AboutMe>
-      <Skills></Skills>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Skills></Skills>
+      </Suspense>
       <Projects></Projects>
       <Graph></Graph>
       <SVGDefs></SVGDefs>

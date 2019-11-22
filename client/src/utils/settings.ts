@@ -12,16 +12,20 @@ const settingsConfig: ISettings = {
     primaryBg: "#030f27",
     cardBg: "#231d55",
     cardTxt: "#9288dc",
-    btnTxt: "#000"
+    btnTxt: "#000",
+    btnBgFocus: "#5396f0",
+    btnTxtFocus: "#fff"
   },
   lightTheme: {
-    navTxtColor: "#ccc",
+    navTxtColor: "#ffffffad",
     primaryTxtColor: "#011daa",
     secondaryTxtColor: "#ccc",
     primaryBg: "#fff",
     cardBg: "#fff",
     cardTxt: "#888",
-    btnTxt: "#fff"
+    btnTxt: "#fff",
+    btnBgFocus: "#000",
+    btnTxtFocus: "#fff"
   }
 };
 
@@ -87,6 +91,14 @@ const changeCSSVars = (theme: theme): void => {
   document.documentElement.style.setProperty("--card-bg", theme.cardBg);
   document.documentElement.style.setProperty("--card-txt", theme.cardTxt);
   document.documentElement.style.setProperty("--btn-txt", theme.btnTxt);
+  document.documentElement.style.setProperty(
+    "--btn-txt-focus",
+    theme.btnTxtFocus
+  );
+  document.documentElement.style.setProperty(
+    "--btn-bg-focus",
+    theme.btnBgFocus
+  );
 
   // IE11 lacks css :root, this ponyfill is initialized in main file in order to be used
   cssVars({
@@ -97,7 +109,9 @@ const changeCSSVars = (theme: theme): void => {
       "--primary-bg": theme.primaryBg,
       "--card-bg": theme.cardBg,
       "--card-txt": theme.cardTxt,
-      "--btn-txt": theme.btnTxt
+      "--btn-txt": theme.btnTxt,
+      "--btn-txt-focus": theme.btnTxtFocus,
+      "--btn-bg-focus": theme.btnBgFocus
     }
   });
 };

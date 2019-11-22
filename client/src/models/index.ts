@@ -17,13 +17,15 @@ export type WakaSchema = [
 ];
 
 export type theme = {
-  navTxtColor: "#0303a3" | "#ccc";
+  navTxtColor: "#0303a3" | "#ffffffad";
   primaryTxtColor: "#5396f0" | "#011daa";
   secondaryTxtColor: "#0303a3" | "#ccc";
   primaryBg: "#030f27" | "#fff";
   cardBg: "#231d55" | "#fff";
   cardTxt: "#9288dc" | "#888";
   btnTxt: "#000" | "#fff";
+  btnBgFocus: "#5396f0" | "#000";
+  btnTxtFocus: "#fff";
 };
 
 export interface ISettings {

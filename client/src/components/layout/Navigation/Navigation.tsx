@@ -1,14 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link, animateScroll as Scroll } from "react-scroll";
-import Collapse from "@kunukn/react-collapse";
-import { ReactComponent as LogoSimple } from "../../assets/logo_monochrome.svg";
-import Settings from "../Settings";
-import { isNavVisible, isNavTop } from "../../utils/settings";
+import { ReactComponent as LogoSimple } from "../../../assets/logo_monochrome.svg";
+import Settings from "./Settings";
+import { isNavVisible, isNavTop } from "../../../utils/settings";
+
+const Collapse = React.lazy(() =>
+  import(/* webpackChunkName: "Collapse" */ "@kunukn/react-collapse")
+);
 
 export default function Navigation() {
   const hamburgerMenuEl = useRef<HTMLButtonElement>(null);
+  const aboutMeLinkEl = useRef<HTMLAnchorElement>(null);
   const [toggleMenu, setMenu] = useState(false);
   const [toggleHeader, setHeader] = useState(false);
   const [toggleHeaderShadow, setHeaderShadow] = useState(false);
@@ -19,14 +23,31 @@ export default function Navigation() {
   });
 
   useEffect(() => {
+    const url = window.location.href;
+    if (url.match("#about-me")) {
+      const aboutMe = document.querySelector(".nav-list-link");
+      if (aboutMe) {
+        aboutMe.classList.add("active");
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     // window.pageYOffset is IE9+ browser compatible
-    let prev = window.scrollY || window.pageYOffset;
+    const windowScrollY = window.scrollY || window.pageYOffset;
+    let prev = windowScrollY;
 
     const handleHeader = () => {
       const windowScrollY = window.scrollY || window.pageYOffset;
 
       if (windowScrollY <= 15) {
         setHeaderShadow(() => false);
+        setTimeout(() => {
+          const aboutMe = document.querySelector(".nav-list-link");
+          if (aboutMe) {
+            aboutMe.classList.add("active");
+          }
+        }, 500);
       } else {
         setHeaderShadow(() => true);
       }
@@ -138,16 +159,26 @@ export default function Navigation() {
           onClick={onToggleMenu}
           ref={hamburgerMenuEl}
         >
-          <div className="menu-line"></div>
+          <span
+            // removes IE button click effect
+            className="btn-no-effect"
+          >
+            <div className="menu-line"></div>
+          </span>
         </button>
       </div>
       <div className={`${hideNavLinksCss()} ${navTopCss()} nav-mobile`}>
         <nav>
           <ul className="nav-mobile-group">
             <li className="nav-list">
-              <a
+              <Link
                 className="nav-list-link"
                 href="#about-me"
+                to="about-me"
+                activeClass="active"
+                spy={true}
+                hashSpy={true}
+                ref={aboutMeLinkEl}
                 onClick={() => {
                   Scroll.scrollToTop();
                   // setMenu(!toggleMenu);
@@ -155,12 +186,13 @@ export default function Navigation() {
                 }}
               >
                 About Me
-              </a>
+              </Link>
             </li>
             <li className="nav-list">
               <Link
                 className="nav-list-link"
-                href="#skills-me"
+                activeClass="active"
+                href="#skills"
                 to="skills"
                 spy={true}
                 hashSpy={true}
@@ -175,6 +207,7 @@ export default function Navigation() {
             <li className="nav-list">
               <Link
                 className="nav-list-link"
+                activeClass="active"
                 href="#projects"
                 to="projects"
                 spy={true}
@@ -187,34 +220,71 @@ export default function Navigation() {
                 Projects
               </Link>
             </li>
+            {/* <li className="nav-list">
+              <Link
+                className="nav-list-link"
+                href="#education"
+                to="education"
+                spy={true}
+                hashSpy={true}
+                smooth={true}
+                duration={500}
+                onClick={onLink}
+                offset={-60}
+              >
+                Education
+              </Link>
+            </li>
+            <li className="nav-list">
+              <Link
+                className="nav-list-link"
+                href="#experience"
+                to="experience"
+                spy={true}
+                hashSpy={true}
+                smooth={true}
+                duration={500}
+                onClick={onLink}
+                offset={-60}
+              >
+                Experience
+              </Link>
+            </li> */}
             <li className="nav-list">
               <button
                 className="nav-list-link nav-list-btn"
                 onClick={onToggleSettings}
               >
-                Settings
-                <span className={`settings-chevron ${chevronDownCss()}`}>
-                  <FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon>
+                <span
+                  // removes IE button click effect
+                  className="btn-no-effect"
+                >
+                  Settings
+                  <span className={`settings-chevron ${chevronDownCss()}`}>
+                    <FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon>
+                  </span>
                 </span>
               </button>
             </li>
-            <Collapse isOpen={toggleSettings}>
-              {/*
+            <Suspense fallback={null}>
+              <Collapse isOpen={toggleSettings}>
+                {/*
               In this case it's overkill to remove content
               but there will be many cases where dynamic content
               is added and there needs to be a solution
               toggleSettings ? <Settings></Settings> : null
               */}
-              <Settings
-                navSettings={navSettings}
-                setNavSettings={setNavSettings}
-                setSettings={setSettings}
-                toggleSettings={toggleSettings}
-                toggleMenu={toggleMenu}
-                setMenu={setMenu}
-                hamburgerMenuEl={hamburgerMenuEl}
-              ></Settings>
-            </Collapse>
+                <Settings
+                  navSettings={navSettings}
+                  setNavSettings={setNavSettings}
+                  setSettings={setSettings}
+                  toggleSettings={toggleSettings}
+                  toggleMenu={toggleMenu}
+                  setMenu={setMenu}
+                  hamburgerMenuEl={hamburgerMenuEl}
+                ></Settings>
+              </Collapse>
+            </Suspense>
           </ul>
         </nav>
       </div>

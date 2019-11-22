@@ -1,6 +1,11 @@
 import React, { useRef, useState } from "react";
-import { setTheme, setNavRelative, setNavVisible } from "../utils/settings";
-import { ISettingsReactComponent } from "../models/index";
+
+import {
+  setTheme,
+  setNavRelative,
+  setNavVisible
+} from "../../../utils/settings";
+import { ISettingsReactComponent } from "../../../models/index";
 
 export default function Settings({
   navSettings,

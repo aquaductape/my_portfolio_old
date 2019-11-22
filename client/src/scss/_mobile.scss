@@ -29,8 +29,8 @@
 
 section {
   text-align: center;
-  margin-bottom: 160px;
   padding: 10px;
+  padding-bottom: 160px;
 }
 
 .section-title {
@@ -70,6 +70,7 @@ section {
   display: flex;
   flex-direction: column;
   text-align: center;
+  padding-bottom: 15px;
 }
 
 .nav-list {
@@ -80,12 +81,14 @@ section {
   text-transform: uppercase;
   text-decoration: none;
   font-size: 1.25rem;
+  color: var(--nav-txt-color);
   padding: 0.5em;
   transition: 500ms color;
 
   &:hover,
   &.focus-visible {
     color: #fff;
+    font-weight: 700;
   }
 }
 
@@ -93,6 +96,13 @@ section {
   color: var(--nav-txt-color);
   border: none;
   background: none;
+  padding: 0;
+
+  // Remove IE button push effects
+  &:focus .btn-no-effect,
+  &:active .btn-no-effect {
+    position: relative;
+  }
 }
 
 .nav-btn {
@@ -103,12 +113,19 @@ section {
   padding: 10px;
   display: inline-block;
   cursor: pointer;
+
+  // Remove IE button push effects
+  &:focus .btn-no-effect,
+  &:active .btn-no-effect {
+    position: relative;
+  }
 }
 
 .menu-line {
   height: 2px;
   background: var(--primary-bg);
   position: relative;
+  width: 100%;
   transition: 500ms transform;
 
   &::before,
@@ -226,7 +243,7 @@ section {
   transition: 500ms color;
 
   &:hover,
-  &:focus.visible {
+  &.focus-visible {
     color: #fff;
   }
 }
@@ -237,7 +254,12 @@ section {
 
 //activators
 
-.active > .menu-line {
+.active.nav-list-link {
+  color: #fff;
+  font-weight: 700;
+}
+
+.active .menu-line {
   transform: rotate(225deg);
 
   &::before,
@@ -277,6 +299,7 @@ section {
 
 .about-me {
   padding: 0;
+  margin-bottom: 160px;
 }
 
 .about-me-area {

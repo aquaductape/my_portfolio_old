@@ -1,5 +1,8 @@
-import React from "react";
-import FusionTimeChart from "./Fusion/FusionTimeChart";
+import React, { Suspense } from "react";
+
+const FusionTimeChart = React.lazy(() =>
+  import(/* webpackChunkName: "chart" */ "./Fusion/FusionTimeChart")
+);
 
 export default function Graph() {
   return (
@@ -9,7 +12,9 @@ export default function Graph() {
       </h2>
       <p>(Powered by wakatime.com)</p>
       <div className="container">
-        <FusionTimeChart />
+        <Suspense fallback={null}>
+          <FusionTimeChart />
+        </Suspense>
       </div>
     </section>
   );

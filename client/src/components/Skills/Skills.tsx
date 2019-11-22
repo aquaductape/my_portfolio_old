@@ -1,17 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Element } from "react-scroll";
-import gsap from "gsap";
+import React from "react";
 
-// import npmSVG from "../../assets/icons/npm.svg";
-// import jsSVG from "../../assets/icons/js.svg";
-// import typescriptSVG from "../../assets/icons/typescript.svg";
-// import sassSVG from "../../assets/icons/sass.svg";
-// import gitSVG from "../../assets/icons/git.svg";
-// import reactjsSVG from "../../assets/icons/reactjs.svg";
-// import mysqlSVG from "../../assets/icons/mysql.svg";
-// import nodeSVG from "../../assets/icons/node.svg";
-// import cssSVG from "../../assets/icons/css.svg";
-// import mongoSVG from "../../assets/icons/mongo.svg";
 import {
   html,
   css,
@@ -26,7 +14,6 @@ import {
   mysql
 } from "./icons";
 
-import SVGClipIcon from "../SVGClipIcon";
 import Skill from "./Skill";
 
 export default function Skills() {
@@ -49,14 +36,10 @@ export default function Skills() {
   });
 
   return (
-    <section className="skills">
-      <Element name="skills">
-        <h2 className="section-title skills-title" id="skills">
-          Skills
-        </h2>
+    <section id="skills" className="skills">
+      <h2 className="section-title skills-title">Skills</h2>
 
-        <ul className="skills-group">{skillItems}</ul>
-      </Element>
+      <ul className="skills-group">{skillItems}</ul>
     </section>
   );
 }

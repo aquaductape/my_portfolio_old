@@ -7,7 +7,7 @@ import { ReactComponent as Creation } from "../assets/hero-img.svg";
 
 export default function AboutMe() {
   return (
-    <section className="about-me">
+    <section id="about-me" className="about-me">
       <div className="about-me-area">
         <div className="about-me-area-content">
           <h1>

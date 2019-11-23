@@ -18,6 +18,7 @@ export type WakaSchema = [
 
 export type theme = {
   navTxtColor: "#0303a3" | "#ffffffad";
+  navBgColor: "#5396f0" | "#011daa";
   primaryTxtColor: "#5396f0" | "#011daa";
   secondaryTxtColor: "#0303a3" | "#ccc";
   primaryBg: "#030f27" | "#fff";

@@ -1,4 +1,5 @@
 $nav-txt-color: #ffffffad;
+$nav-bg-color: #011daa;
 $primary-txt-color: #011daa;
 $secondary-txt-color: #ccc;
 $card-bg: #fff;
@@ -11,6 +12,7 @@ $transitionTheme: 500ms background-color;
 
 :root {
   --nav-txt-color: #{$nav-txt-color};
+  --nav-bg-color: #{$nav-bg-color};
   --primary-txt-color: #{$primary-txt-color};
   --secondary-txt-color: #{$secondary-txt-color};
   --primary-bg: #{$primary-bg};

@@ -48,7 +48,7 @@ section {
 /************ navigation ***********/
 .header-bar {
   display: flex;
-  background: var(--primary-txt-color);
+  background: var(--nav-bg-color);
   padding: 10px;
   justify-content: space-between;
   align-items: center;
@@ -58,7 +58,7 @@ section {
 }
 
 .nav-mobile {
-  background: var(--primary-txt-color);
+  background: var(--nav-bg-color);
   color: var(--secondary-txt-color);
   box-shadow: 0px 15px 32px -7px #00000042;
   z-index: 2;
@@ -305,7 +305,7 @@ section {
 .about-me-area {
   padding: 60px 10px 30px 10px;
   min-height: 80vh;
-  background: var(--primary-txt-color);
+  background: var(--nav-bg-color);
   color: var(--secondary-txt-color);
   display: flex;
   flex-direction: column;
@@ -324,7 +324,7 @@ section {
 }
 
 .about-me-social-links {
-  background: var(--primary-txt-color);
+  background: var(--nav-bg-color);
   position: relative;
   color: #ccc;
   transition: $transitionTheme;

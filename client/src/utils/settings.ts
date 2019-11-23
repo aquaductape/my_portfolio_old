@@ -7,6 +7,7 @@ const settingsConfig: ISettings = {
   headerTop: false,
   darkTheme: {
     navTxtColor: "#0303a3",
+    navBgColor: "#5396f0",
     primaryTxtColor: "#5396f0",
     secondaryTxtColor: "#0303a3",
     primaryBg: "#030f27",
@@ -18,6 +19,7 @@ const settingsConfig: ISettings = {
   },
   lightTheme: {
     navTxtColor: "#ffffffad",
+    navBgColor: "#011daa",
     primaryTxtColor: "#011daa",
     secondaryTxtColor: "#ccc",
     primaryBg: "#fff",
@@ -84,6 +86,10 @@ const changeCSSVars = (theme: theme): void => {
     theme.navTxtColor
   );
   document.documentElement.style.setProperty(
+    "--nav-bg-color",
+    theme.navBgColor
+  );
+  document.documentElement.style.setProperty(
     "--secondary-txt-color",
     theme.secondaryTxtColor
   );
@@ -104,6 +110,7 @@ const changeCSSVars = (theme: theme): void => {
   cssVars({
     variables: {
       "--nav-txt-color": theme.navTxtColor,
+      "--nav-bg-color": theme.navBgColor,
       "--primary-txt-color": theme.primaryTxtColor,
       "--secondary-txt-color": theme.secondaryTxtColor,
       "--primary-bg": theme.primaryBg,

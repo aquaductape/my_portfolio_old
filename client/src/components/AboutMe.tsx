@@ -4,6 +4,7 @@ import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { ReactComponent as Logo } from "../assets/logo_fullname.svg";
 import { ReactComponent as Creation } from "../assets/hero-img.svg";
+import resumePDF from "../assets/pdf/Caleb_Taylor_Resume.pdf";
 
 export default function AboutMe() {
   return (
@@ -34,7 +35,7 @@ export default function AboutMe() {
           <a href="https://www.linkedin.com/in/caleb1taylor2/" target="blank">
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
-          <a href="#foo" target="blank">
+          <a href={resumePDF} download="Caleb_Taylor_Resume.pdf">
             <FontAwesomeIcon icon={faDownload} />
           </a>
         </div>

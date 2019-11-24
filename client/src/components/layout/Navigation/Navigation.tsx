@@ -7,7 +7,7 @@ import Settings from "./Settings";
 import { isNavVisible, isNavTop } from "../../../utils/settings";
 
 const Collapse = React.lazy(() =>
-  import(/* webpackChunkName: "Collapse" */ "@kunukn/react-collapse")
+  import(/* webpackChunkName: "collapse" */ "@kunukn/react-collapse")
 );
 
 export default function Navigation() {

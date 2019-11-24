@@ -7,14 +7,12 @@ interface ISkillProps {
 }
 
 export default function Skill({ title, icon }: ISkillProps) {
+  const [animateIconEnter, setAnimateIconEnter] = useState<any>(null);
+  const [animateIconLeave, setAnimateIconLeave] = useState<any>(null);
   const svgId = `skill-icon-${title}`;
   const circleId = `.${svgId}__clipPath-circle`;
 
-  const [animateIconEnter, setAnimateIconEnter] = useState<any>(null);
-  const [animateIconLeave, setAnimateIconLeave] = useState<any>(null);
-
   useEffect(() => {
-    console.log(circleId);
     const animation = gsap.fromTo(
       circleId,
       {

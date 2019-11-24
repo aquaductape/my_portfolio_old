@@ -123,7 +123,7 @@ section {
 
 .menu-line {
   height: 2px;
-  background: var(--primary-bg);
+  background: var(--header-color);
   position: relative;
   width: 100%;
   transition: 500ms transform;
@@ -142,6 +142,33 @@ section {
 
   &::after {
     top: 6px;
+  }
+}
+
+.toggle-area {
+  margin: 10px auto;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-area-item {
+  text-align: left;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  outline: none;
+}
+
+.toggle-area-item-label {
+  cursor: pointer;
+  &:hover {
+    color: #fff;
   }
 }
 
@@ -237,7 +264,7 @@ section {
 }
 
 .logo a {
-  color: var(--primary-bg);
+  color: var(--header-color);
   display: inline-block;
   height: 100%;
   transition: 500ms color;
@@ -341,33 +368,6 @@ section {
   }
 }
 
-.toggle-area {
-  margin: 10px auto;
-  width: 100%;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.toggle-area-item {
-  text-align: left;
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  outline: none;
-}
-
-.toggle-area-item-label {
-  cursor: pointer;
-  &:hover {
-    color: #fff;
-  }
-}
-
 .social-links {
   width: 250px;
   padding: 15px;
@@ -388,8 +388,33 @@ section {
 
     &:hover,
     &:focus {
-      color: var(--primary-txt-color);
+      color: var(--btn-bg-focus);
     }
+  }
+}
+
+//// hero img
+#hero-img-color1 {
+  stop {
+    stop-color: var(--hero-img-color1);
+  }
+}
+
+#hero-img-color2 {
+  stop {
+    stop-color: var(--hero-img-color2);
+  }
+}
+
+#hero-img-color3 {
+  stop {
+    stop-color: var(--hero-img-color3);
+  }
+}
+
+#hero-img-color4 {
+  stop {
+    stop-color: var(--hero-img-color4);
   }
 }
 
@@ -418,7 +443,7 @@ section {
 
 #gradient-to-solid {
   stop {
-    stop-color: var(--primary-txt-color);
+    stop-color: var(--icon-color);
   }
 }
 
@@ -429,18 +454,18 @@ section {
 }
 
 .skills-item {
-  color: var(--primary-txt-color);
+  color: var(--icon-color);
   text-align: center;
   font-size: 0.625rem;
   font-size: 0.725rem;
   font-weight: 700;
 
   // RIP CSS animations for IE
-  .clipPath-circle {
-    //   transform: scale(0);
-    //   transition: 800ms;
-    // transform-origin: center;
-  }
+  // .clipPath-circle {
+  //   transform: scale(0);
+  //   transition: 800ms;
+  // transform-origin: center;
+  // }
   // &:hover,
   // &:focus {
   // .clipPath-circle {
@@ -510,8 +535,14 @@ section {
 }
 
 .card-link-item {
-  background: var(--primary-txt-color);
+  display: inline-block;
+  background: var(--btn-bg);
   color: var(--btn-txt);
+  // When there's border radius ,if the type of element is inline,
+  // it will have extremely faint broken secondary border,
+  // I think what's happening is parts of element's content is bigger than the border
+  // The fix is to set the element to block
+  border: 2px solid var(--btn-border);
   padding: 5px 10px;
   border-radius: 30px;
   margin-right: 5px;
@@ -541,7 +572,7 @@ section {
 
 .legendGroupText {
   text {
-    fill: var(--primary-txt-color);
+    fill: var(--secondary-txt-color);
     // font-size: 15px !important;
     font-weight: bold !important;
   }
@@ -553,11 +584,11 @@ section {
 
 .toolbarContent {
   text {
-    fill: var(--primary-txt-color);
+    fill: var(--secondary-txt-color);
   }
 
   path {
-    stroke: var(--primary-txt-color);
+    stroke: var(--secondary-txt-color);
   }
 }
 
@@ -569,24 +600,24 @@ section {
 .gridLineGroup {
   opacity: 0.15;
   path {
-    stroke: var(--primary-txt-color);
+    stroke: var(--secondary-txt-color);
   }
 }
 
 .canvasTropo {
   path {
-    stroke: var(--primary-txt-color);
+    stroke: var(--secondary-txt-color);
   }
 }
 
 .axisLeft,
 .axisBottom {
   text {
-    fill: var(--primary-txt-color);
+    fill: var(--secondary-txt-color);
     font-size: 15px !important;
   }
   path {
-    stroke: var(--primary-txt-color);
+    stroke: var(--secondary-txt-color);
   }
 }
 

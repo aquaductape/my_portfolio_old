@@ -1,3 +1,4 @@
+$header-color: #fff;
 $nav-txt-color: #ffffffad;
 $nav-bg-color: #011daa;
 $primary-txt-color: #011daa;
@@ -5,12 +6,20 @@ $secondary-txt-color: #ccc;
 $card-bg: #fff;
 $card-txt: #888;
 $btn-txt: #fff;
+$btn-bg: #011daa;
+$btn-border: #fff;
 $btn-txt-focus: #fff;
 $btn-bg-focus: #000;
 $primary-bg: #fff;
+$hero-img-color1: #fff;
+$hero-img-color2: #011daa;
+$hero-img-color3: #336aed;
+$hero-img-color4: #1145c1;
+$icon-color: #011daa;
 $transitionTheme: 500ms background-color;
 
 :root {
+  --header-color: #{$header-color};
   --nav-txt-color: #{$nav-txt-color};
   --nav-bg-color: #{$nav-bg-color};
   --primary-txt-color: #{$primary-txt-color};
@@ -19,6 +28,13 @@ $transitionTheme: 500ms background-color;
   --card-bg: #{$card-bg};
   --card-txt: #{$card-txt};
   --btn-txt: #{$btn-txt};
+  --btn-bg: #{$btn-bg};
+  --btn-border: #{$btn-border};
   --btn-txt-focus: #{$btn-txt-focus};
   --btn-bg-focus: #{$btn-bg-focus};
+  --hero-img-color1: #{$hero-img-color1};
+  --hero-img-color2: #{$hero-img-color2};
+  --hero-img-color3: #{$hero-img-color3};
+  --hero-img-color4: #{$hero-img-color4};
+  --icon-color: #{$icon-color};
 }

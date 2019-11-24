@@ -29,13 +29,25 @@ export default function AboutMe() {
       </div>
       <div className="about-me-social-links">
         <div className="social-links">
-          <a href="https://github.com/aquaductape" target="blank">
+          <a
+            aria-label="Github"
+            href="https://github.com/aquaductape"
+            target="blank"
+          >
             <FontAwesomeIcon icon={faGithub} />
           </a>
-          <a href="https://www.linkedin.com/in/caleb1taylor2/" target="blank">
+          <a
+            aria-label="LinkedIn"
+            href="https://www.linkedin.com/in/caleb1taylor2/"
+            target="blank"
+          >
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
-          <a href={resumePDF} download="Caleb_Taylor_Resume.pdf">
+          <a
+            aria-label="Download PDF Resume"
+            href={resumePDF}
+            download="Caleb_Taylor_Resume.pdf"
+          >
             <FontAwesomeIcon icon={faDownload} />
           </a>
         </div>

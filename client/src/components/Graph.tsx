@@ -8,7 +8,7 @@ export default function Graph() {
   return (
     <section className="coding-activity">
       <h2 className="section-title coding-activity-title">
-        Coding Activity over the Past Week
+        Recent Coding Activity
       </h2>
       <p>(Powered by wakatime.com)</p>
       <div className="container">

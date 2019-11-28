@@ -19,17 +19,14 @@ const settingsConfig: ISettings = {
     btnBorder: "#5396f0",
     btnBgFocus: "#5396f0",
     btnTxtFocus: "#fff",
-    heroImgColor1: "#bbb",
-    heroImgColor2: "#25385b",
-    heroImgColor3: "#6c6c6c",
-    heroImgColor4: "#030f27",
+    graphColor: "#bbb",
     iconColor: "#bbb"
   },
   lightTheme: {
     headerColor: "#fff",
     navTxtColor: "#ffffffad",
-    navBgColor: "#011daa",
-    primaryTxtColor: "#011daa",
+    navBgColor: "#2d42a8",
+    primaryTxtColor: "#2d42a8",
     secondaryTxtColor: "#ccc",
     primaryBg: "#fff",
     cardBg: "#fff",
@@ -39,11 +36,8 @@ const settingsConfig: ISettings = {
     btnBorder: "#fff",
     btnBgFocus: "#000",
     btnTxtFocus: "#fff",
-    heroImgColor1: "#fff",
-    heroImgColor2: "#011daa",
-    heroImgColor3: "#336aed",
-    heroImgColor4: "#1145c1",
-    iconColor: "#011daa"
+    graphColor: "#2d42a8",
+    iconColor: "#2d42a8"
   }
 };
 
@@ -88,7 +82,7 @@ const changeTheme = (theme: theme): void => {
 const changeMetaTagTileColor = (theme: theme): void => {
   const themeColor = document.getElementById("theme-color");
   if (themeColor) {
-    themeColor.setAttribute("content", theme.primaryTxtColor);
+    themeColor.setAttribute("content", theme.navBgColor);
   }
 };
 
@@ -131,22 +125,7 @@ const changeCSSVars = (theme: theme): void => {
     "--btn-bg-focus",
     theme.btnBgFocus
   );
-  document.documentElement.style.setProperty(
-    "--hero-img-color1",
-    theme.heroImgColor1
-  );
-  document.documentElement.style.setProperty(
-    "--hero-img-color2",
-    theme.heroImgColor2
-  );
-  document.documentElement.style.setProperty(
-    "--hero-img-color3",
-    theme.heroImgColor3
-  );
-  document.documentElement.style.setProperty(
-    "--hero-img-color4",
-    theme.heroImgColor4
-  );
+  document.documentElement.style.setProperty("--graph-color", theme.graphColor);
   document.documentElement.style.setProperty("--icon-color", theme.iconColor);
 
   // IE11 lacks css :root, this ponyfill is initialized in main file in order to be used
@@ -164,10 +143,7 @@ const changeCSSVars = (theme: theme): void => {
       "--btn-border": theme.btnBorder,
       "--btn-txt-focus": theme.btnTxtFocus,
       "--btn-bg-focus": theme.btnBgFocus,
-      "--hero-img-color1": theme.heroImgColor1,
-      "--hero-img-color2": theme.heroImgColor2,
-      "--hero-img-color3": theme.heroImgColor3,
-      "--hero-img-color4": theme.heroImgColor4,
+      "--graph-color": theme.graphColor,
       "--icon-color": theme.iconColor
     }
   });

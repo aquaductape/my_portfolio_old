@@ -19,8 +19,8 @@ export type WakaSchema = [
 export type theme = {
   headerColor: /* dark */ "#fff" | "#fff";
   navTxtColor: /* dark */ "#bbb" | "#ffffffad";
-  navBgColor: /* dark */ "#25385b" | "#011daa";
-  primaryTxtColor: /* dark */ "#fff" | "#011daa";
+  navBgColor: /* dark */ "#25385b" | "#2d42a8";
+  primaryTxtColor: /* dark */ "#fff" | "#2d42a8";
   secondaryTxtColor: /* dark */ "#bbb" | "#ccc";
   primaryBg: /* dark */ "#030f27" | "#fff";
   cardBg: /* dark */ "#142546" | "#fff";
@@ -30,11 +30,8 @@ export type theme = {
   btnBorder: /* dark */ "#5396f0" | "#fff";
   btnBgFocus: /* dark */ "#5396f0" | "#000";
   btnTxtFocus: /* dark */ "#030f27" | "#fff";
-  heroImgColor1: /* dark */ "#bbb" | "#fff";
-  heroImgColor2: /* dark */ "#25385b" | "#011daa";
-  heroImgColor3: /* dark */ "#6c6c6c" | "#336aed";
-  heroImgColor4: /* dark */ "#030f27" | "#1145c1";
-  iconColor: /* dark */ "#bbb" | "#011daa";
+  graphColor: /* dark */ "#bbb" | "#2d42a8";
+  iconColor: /* dark */ "#bbb" | "#2d42a8";
 };
 
 export interface ISettings {

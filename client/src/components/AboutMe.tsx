@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { ReactComponent as Logo } from "../assets/logo_fullname.svg";
-import { ReactComponent as Creation } from "../assets/hero-img.svg";
 import resumePDF from "../assets/pdf/Caleb_Taylor_Resume.pdf";
 
 export default function AboutMe() {
@@ -11,20 +10,25 @@ export default function AboutMe() {
     <section id="about-me" className="about-me">
       <div className="about-me-area">
         <div className="about-me-area-content">
-          <h1>
-            <Logo></Logo>
-          </h1>
-          <h3>(323)-637-1232</h3>
-          <h3>
-            <a href="mailto:name@email.com">caleb1taylor2@gmail.com</a>
-          </h3>
-          <p>
-            Hello! I'm a self taught web developer. I love working with
-            JavaScript and enjoy the process of building applications.
+          <div className="about-me-contact">
+            <h1 className="about-me-logo">
+              <Logo></Logo>
+            </h1>
+
+            <p className="contact-item contact-city">Los Angeles, CA</p>
+            <p className="contact-item contact-phone">(323)-637-1232</p>
+            <a
+              className="contact-item contact-email"
+              href="mailto:name@email.com"
+            >
+              caleb1taylor2@gmail.com
+            </a>
+          </div>
+          <p className="about-me-area-pg">
+            Dedicated self-taught Front-End developer. Continuously building
+            projects that are responsive, performant and accessible. Looking
+            forward to collaborating and solving problems as a team.
           </p>
-        </div>
-        <div className="about-me-area-img">
-          <Creation></Creation>
         </div>
       </div>
       <div className="about-me-social-links">

@@ -31,29 +31,29 @@
     }
   }
 
-  .about-me-area {
-    display: table;
-    width: 100%;
-  }
+  // .about-me-area {
+  //   display: table;
+  //   width: 100%;
+  // }
 
-  .about-me-area-content,
-  .about-me-area-img {
-    display: table-row;
-  }
+  // .about-me-area-content,
+  // .about-me-area-img {
+  //   display: table-row;
+  // }
 
-  .about-me-area-img {
-    vertical-align: middle;
-    // inline svg doesn't scale to parent container
-    // width: 250px;
+  // .about-me-area-img {
+  // vertical-align: middle;
+  // inline svg doesn't scale to parent container
+  // width: 250px;
 
-    svg {
-      // Many browsers—IE, Safari, and versions of Opera and Chrome released prior to summer 2014—will not auto-size inline SVG. If you don't specify both height and width, these browsers will apply their usual default sizes, which as mentioned previously will be different for different browsers. The image will scale to fit inside that height or width, again leaving extra whitespace around it. Again, there are also inconsistencies in what happens if you leave both height and width auto.
+  // svg {
+  // Many browsers—IE, Safari, and versions of Opera and Chrome released prior to summer 2014—will not auto-size inline SVG. If you don't specify both height and width, these browsers will apply their usual default sizes, which as mentioned previously will be different for different browsers. The image will scale to fit inside that height or width, again leaving extra whitespace around it. Again, there are also inconsistencies in what happens if you leave both height and width auto.
 
-      // Internet Explorer cuts the difference, using width of 100% and height of 150px for images and inline SVG.
-      // https://stackoverflow.com/a/47799004/8234457
+  // Internet Explorer cuts the difference, using width of 100% and height of 150px for images and inline SVG.
+  // https://stackoverflow.com/a/47799004/8234457
 
-      // leave width as 100% since since target browser ignores it and if specified, due to table layout, it will no longer be centered
-      height: 300px;
-    }
-  }
+  // leave width as 100% since since target browser ignores it and if specified, due to table layout, it will no longer be centered
+  // height: 300px;
+  // }
+  // }
 }

@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef, Suspense } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { Link, animateScroll as Scroll } from "react-scroll";
+import { animateScroll as Scroll } from "react-scroll";
 import { ReactComponent as LogoSimple } from "../../../assets/logo_monochrome.svg";
 import Settings from "./Settings";
 import { isNavVisible, isNavTop } from "../../../utils/settings";
+import Links from "./Links";
 
 const Collapse = React.lazy(() =>
   import(/* webpackChunkName: "collapse" */ "@kunukn/react-collapse")
@@ -12,25 +13,19 @@ const Collapse = React.lazy(() =>
 
 export default function Navigation() {
   const hamburgerMenuEl = useRef<HTMLButtonElement>(null);
-  const aboutMeLinkEl = useRef<HTMLAnchorElement>(null);
+  const aboutMeLinkEl = useRef<any>(null);
+  const navEl = useRef<HTMLElement>(null);
   const [toggleMenu, setMenu] = useState(false);
   const [toggleHeader, setHeader] = useState(false);
   const [toggleHeaderShadow, setHeaderShadow] = useState(false);
   const [toggleSettings, setSettings] = useState(false);
+  const [toggleSettingsMobile, setSettingsMobile] = useState(
+    window.innerWidth < 600
+  );
   const [navSettings, setNavSettings] = useState({
     navVisible: isNavVisible(),
     navTop: isNavTop()
   });
-
-  useEffect(() => {
-    const url = window.location.href;
-    if (url.match("#about-me")) {
-      const aboutMe = document.querySelector(".nav-list-link");
-      if (aboutMe) {
-        aboutMe.classList.add("active");
-      }
-    }
-  }, []);
 
   useEffect(() => {
     // window.pageYOffset is IE9+ browser compatible
@@ -42,12 +37,6 @@ export default function Navigation() {
 
       if (windowScrollY <= 15) {
         setHeaderShadow(() => false);
-        setTimeout(() => {
-          const aboutMe = document.querySelector(".nav-list-link");
-          if (aboutMe) {
-            aboutMe.classList.add("active");
-          }
-        }, 500);
       } else {
         setHeaderShadow(() => true);
       }
@@ -65,10 +54,21 @@ export default function Navigation() {
       }
     };
 
-    // sometime when reloading the page scroll event runs twice
+    const handleResize = () => {
+      const windowInnerWidth = window.innerWidth;
+
+      if (windowInnerWidth < 600) {
+        setSettingsMobile(() => true);
+      } else {
+        setSettingsMobile(() => false);
+      }
+    };
+
+    // sometimes when reloading the page scroll event runs twice
     // timeout prevents that
     // setTimeout(() => {
     window.addEventListener("scroll", handleHeader);
+    window.addEventListener("resize", handleResize);
     // }, 1000);
   }, []);
 
@@ -111,25 +111,24 @@ export default function Navigation() {
 
   const onToggleMenu = () => {
     const hamburgerMenu = hamburgerMenuEl.current;
-    if (hamburgerMenu) {
-      if (toggleMenu) {
-        hamburgerMenu.classList.remove("active");
-      } else {
-        hamburgerMenu.classList.add("active");
-      }
+    const nav = navEl.current;
+    if (!hamburgerMenu || !nav) return;
+    if (toggleMenu) {
+      hamburgerMenu.classList.remove("active");
+    } else {
+      hamburgerMenu.classList.add("active");
+      nav.setAttribute("style", "");
     }
     setSettings(() => false);
     setMenu(() => !toggleMenu);
   };
 
-  const onLink = () => {
-    const hamburgerMenu = hamburgerMenuEl.current;
-    if (hamburgerMenu) {
-      hamburgerMenu.classList.remove("active");
+  const onTransitionEnd = () => {
+    const nav = navEl.current;
+    if (!nav) return;
+    if (!toggleMenu) {
+      nav.setAttribute("style", "visibility: hidden");
     }
-
-    setSettings(() => false);
-    setMenu(() => false);
   };
 
   return (
@@ -137,122 +136,65 @@ export default function Navigation() {
       <div
         className={`${shadowHeaderCss()} ${hideHeaderCss()} ${navTopCss()} header-bar`}
       >
-        <div className="logo">
-          <a
-            href="#page-top"
-            onClick={e => {
-              e.preventDefault();
-              Scroll.scrollToTop();
-            }}
-          >
-            <LogoSimple></LogoSimple>
-          </a>
-        </div>
+        <div className="header-bar-inner">
+          <div className="logo">
+            <a
+              href="#page-top"
+              onClick={e => {
+                e.preventDefault();
+                Scroll.scrollToTop();
+              }}
+            >
+              <LogoSimple></LogoSimple>
+            </a>
+          </div>
 
-        <button
-          // using classList to add class because it removes focus visible class
-          // which is added dynamically
-          // className={`nav-btn hambuger-menu ${toggleMenu ? "active" : ""}`}
-          className="nav-btn hambuger-menu"
-          aria-pressed={toggleMenu}
-          aria-label={toggleMenu ? "close mobile nav" : "open mobile nav"}
-          onClick={onToggleMenu}
-          ref={hamburgerMenuEl}
-        >
-          <span
-            // removes IE button click effect
-            className="btn-no-effect"
+          <div className="nav-desktop">
+            <ul className="nav-desktop-group">
+              <Links
+                aboutMeLinkEl={aboutMeLinkEl}
+                hamburgerMenuEl={hamburgerMenuEl}
+                setSettings={setSettings}
+                setMenu={setMenu}
+              ></Links>
+            </ul>
+          </div>
+
+          <button
+            // using classList to add class because it removes focus visible class
+            // which is added dynamically
+            // className={`nav-btn hambuger-menu ${toggleMenu ? "active" : ""}`}
+            className="nav-btn hambuger-menu"
+            aria-expanded={toggleMenu}
+            aria-label={toggleMenu ? "close mobile nav" : "open mobile nav"}
+            onClick={onToggleMenu}
+            ref={hamburgerMenuEl}
+            onTransitionEnd={onTransitionEnd}
           >
-            <div className="menu-line"></div>
-          </span>
-        </button>
+            <span
+              // removes IE button click effect
+              className="btn-no-effect"
+            >
+              <div className="menu-line"></div>
+            </span>
+          </button>
+        </div>
       </div>
+
       <div className={`${hideNavLinksCss()} ${navTopCss()} nav-mobile`}>
-        <nav>
+        <nav style={{ visibility: "hidden" }} ref={navEl}>
           <ul className="nav-mobile-group">
-            <li className="nav-list">
-              <Link
-                className="nav-list-link"
-                href="#about-me"
-                to="about-me"
-                activeClass="active"
-                spy={true}
-                hashSpy={true}
-                ref={aboutMeLinkEl}
-                onClick={() => {
-                  Scroll.scrollToTop();
-                  // setMenu(!toggleMenu);
-                  onLink();
-                }}
-              >
-                About Me
-              </Link>
-            </li>
-            <li className="nav-list">
-              <Link
-                className="nav-list-link"
-                activeClass="active"
-                href="#skills"
-                to="skills"
-                spy={true}
-                hashSpy={true}
-                smooth={true}
-                duration={500}
-                onClick={onLink}
-                offset={-60}
-              >
-                Skills
-              </Link>
-            </li>
-            <li className="nav-list">
-              <Link
-                className="nav-list-link"
-                activeClass="active"
-                href="#projects"
-                to="projects"
-                spy={true}
-                hashSpy={true}
-                smooth={true}
-                duration={500}
-                onClick={onLink}
-                offset={-60}
-              >
-                Projects
-              </Link>
-            </li>
-            {/* <li className="nav-list">
-              <Link
-                className="nav-list-link"
-                href="#education"
-                to="education"
-                spy={true}
-                hashSpy={true}
-                smooth={true}
-                duration={500}
-                onClick={onLink}
-                offset={-60}
-              >
-                Education
-              </Link>
-            </li>
-            <li className="nav-list">
-              <Link
-                className="nav-list-link"
-                href="#experience"
-                to="experience"
-                spy={true}
-                hashSpy={true}
-                smooth={true}
-                duration={500}
-                onClick={onLink}
-                offset={-60}
-              >
-                Experience
-              </Link>
-            </li> */}
+            <Links
+              aboutMeLinkEl={aboutMeLinkEl}
+              hamburgerMenuEl={hamburgerMenuEl}
+              setSettings={setSettings}
+              setMenu={setMenu}
+            ></Links>
             <li className="nav-list">
               <button
                 className="nav-list-link nav-list-btn"
+                aria-expanded={toggleSettings}
+                aria-label={toggleSettings ? "close settings" : "open settings"}
                 onClick={onToggleSettings}
               >
                 <span
@@ -267,7 +209,7 @@ export default function Navigation() {
               </button>
             </li>
             <Suspense fallback={null}>
-              <Collapse isOpen={toggleSettings}>
+              <Collapse isOpen={!toggleSettingsMobile || toggleSettings}>
                 {/*
               In this case it's overkill to remove content
               but there will be many cases where dynamic content

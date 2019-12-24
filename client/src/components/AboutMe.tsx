@@ -16,7 +16,7 @@ export default function AboutMe() {
             </h1>
 
             <p className="contact-item contact-city">Los Angeles, CA</p>
-            <p className="contact-item contact-phone">(323)-637-1232</p>
+            <p className="contact-item contact-phone">(323) 637-1232</p>
             <a
               className="contact-item contact-email"
               href="mailto:name@email.com"

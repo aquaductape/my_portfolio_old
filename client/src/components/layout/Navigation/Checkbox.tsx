@@ -40,7 +40,9 @@ export default function Checkbox({
   disabled,
   setDisabled
 }: ICheckboxProps) {
-  const tabIndex = allowDisable ? { tabIndex: disabled ? -1 : 0 } : {};
+  const tabIndex = allowDisable
+    ? { tabIndex: disabled ? -1 : 0 }
+    : { tabIndex: 0 };
   const onInputDarkMode = (
     e: React.MouseEvent<HTMLInputElement, MouseEvent>
   ) => {
@@ -169,10 +171,13 @@ export default function Checkbox({
   };
   return (
     <>
+      {/* Works with Google/Samsung Screen Reader on Android */}
+      {/* NVDA with cursor won't recognize it as a checkbox, focusing on it will*/}
+      {/* NVDA with IE or Edge works normal with cursor */}
       <label className="toggle-area-item-label" htmlFor={id}>
         {lableName}
       </label>
-      <label className="switch">
+      <label className="switch" htmlFor={id}>
         <input
           id={id}
           className="custom-toggle"

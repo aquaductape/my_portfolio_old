@@ -84,6 +84,7 @@ section {
 }
 
 .nav-list-link {
+  position: relative;
   text-transform: uppercase;
   text-decoration: none;
   font-size: 1.25rem;
@@ -91,9 +92,25 @@ section {
   padding: 0.5em;
   transition: 500ms color;
 
+  &::after {
+    position: absolute;
+    content: "";
+    top: -5px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: 100%;
+    border-bottom: 2px solid #fff;
+    transform: scaleX(0);
+    transition: transform 500ms;
+  }
+
   &:hover,
   &.focus-visible {
     color: #fff;
+
+    &::after {
+      transform: scaleX(1);
+    }
   }
 }
 
@@ -106,6 +123,10 @@ section {
   border: none;
   background: none;
   padding: 0;
+
+  &::after {
+    display: none;
+  }
 
   // Remove IE button push effects
   &:focus .btn-no-effect,
@@ -411,7 +432,7 @@ section {
 .about-me-social-links {
   background: var(--nav-bg-color);
   position: relative;
-  color: #ccc;
+  color: var(--card-txt);
   transition: $transitionTheme;
 
   &::after {

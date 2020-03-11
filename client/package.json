@@ -2,6 +2,7 @@
   "name": "my_portfolio",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://calebetaylor.com",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-brands-svg-icons": "^5.11.2",
@@ -24,6 +25,7 @@
     "react-fusioncharts": "^3.0.1",
     "react-scripts": "3.2.0",
     "react-scroll": "^1.7.14",
+    "react-snap": "^1.23.0",
     "react-svg-unique-id": "^1.3.2",
     "typescript": "3.6.4"
   },

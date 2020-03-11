@@ -46,7 +46,12 @@ const dataSource = {
       }
     }
   ],
-  xAxis: {},
+  xaxis: {
+    initialInterval: {
+      from: "2019-16-11",
+      to: "2019-21-11"
+    }
+  },
   series: "Project"
 };
 

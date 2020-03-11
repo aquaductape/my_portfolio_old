@@ -24,11 +24,11 @@ export default function Skills() {
     [js, "JavaScript"],
     [typescript, "Typescript"],
     [react, "ReactJS"],
-    [git, "Git"],
-    [npm, "NPM"],
-    [nodejs, "NodeJS"],
-    [mongodb, "MongoDB"],
-    [mysql, "MySQL"]
+    [git, "Git"]
+    // [npm, "NPM"]
+    // [nodejs, "NodeJS"],
+    // [mongodb, "MongoDB"],
+    // [mysql, "MySQL"]
   ];
 
   const skillItems = icons.map(([icon, title], i) => {

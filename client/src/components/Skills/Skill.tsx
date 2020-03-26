@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import gsap from "gsap";
-import { IOS } from "../../utils/browserInfo";
+import { IOS, IOS13 } from "../../utils/browserInfo";
 import addEscapeHatch from "../../utils/addEscapeHatch";
 
 interface ISkillProps {
@@ -55,7 +55,7 @@ export default function Skill({ title, icon }: ISkillProps) {
 
   return (
     <>
-      {IOS ? (
+      {IOS && !IOS13 ? (
         <li className="skills-item" onClick={onClickAnimate}>
           {icon}
           <p>{title}</p>

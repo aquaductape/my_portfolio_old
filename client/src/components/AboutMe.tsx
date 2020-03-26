@@ -18,12 +18,12 @@ export default function AboutMe() {
 
             <p className="contact-item contact-city">Los Angeles, CA</p>
             <p className="contact-item contact-phone">(323) 637-1232</p>
-            <a
-              className="contact-item contact-email"
-              href="mailto:name@email.com"
-            >
-              caleb1taylor2@gmail.com
-            </a>
+
+            <div className="contact-item">
+              <a className="contact-email" href="mailto:name@email.com">
+                caleb1taylor2@gmail.com
+              </a>
+            </div>
           </div>
           <p className="about-me-area-pg">
             Dedicated self-taught Front-End developer. Continuously building

@@ -228,15 +228,15 @@ export const js = (
 
 export const typescript = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-    <clipPath id="skill-icon-Typescript__clipPath">
+    <clipPath id="skill-icon-TypeScript__clipPath">
       <circle
-        className="skill-icon-Typescript__clipPath-circle"
+        className="skill-icon-TypeScript__clipPath-circle"
         cx={16}
         cy={16}
         r={0}
       />
     </clipPath>
-    <g id="skill-icon-Typescript">
+    <g id="skill-icon-TypeScript">
       <polygon
         points="2 16 2 30 16 30 30 30 30 16 30 2 16 2 2 2 2 16"
         style={{ fill: "currentColor" }}
@@ -247,15 +247,15 @@ export const typescript = (
       />
     </g>
     <circle
-      className="skill-icon-Typescript__clipPath-circle"
+      className="skill-icon-TypeScript__clipPath-circle"
       fill="url(#match-background)"
       cx={16}
       cy={16}
       r={0}
     />
     <g
-      id="skill-icon-Typescript"
-      clipPath="url(#skill-icon-Typescript__clipPath)"
+      id="skill-icon-TypeScript"
+      clipPath="url(#skill-icon-TypeScript__clipPath)"
     >
       <polygon
         points="2 16 2 30 16 30 30 30 30 16 30 2 16 2 2 2 2 16"

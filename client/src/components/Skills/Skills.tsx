@@ -22,7 +22,7 @@ export default function Skills() {
     [css, "CSS"],
     [sass, "Sass"],
     [js, "JavaScript"],
-    [typescript, "Typescript"],
+    [typescript, "TypeScript"],
     [react, "ReactJS"],
     [git, "Git"]
     // [npm, "NPM"]

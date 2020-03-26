@@ -6,17 +6,8 @@
     <linearGradient id="match-background">
       <stop stop-color="#000"/>
     </linearGradient>
-    <linearGradient id="hero-img-color1">
-    <stop stop-color="#000"></stop>
-    </linearGradient>
-    <linearGradient id="hero-img-color2">
-    <stop stop-color="#000"></stop>
-    </linearGradient>
-    <linearGradient id="hero-img-color3">
-    <stop stop-color="#000"></stop>
-    </linearGradient>
-    <linearGradient id="hero-img-color4">
-    <stop stop-color="#000"></stop>
-    </linearGradient>
+    <!-- <linearGradient id="hero-background-gradient">
+      <stop stop-color="#000"></stop>
+    </linearGradient> -->
   </defs> 
 </svg>

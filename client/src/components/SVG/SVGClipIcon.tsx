@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { changeColor } from "../utils/svgTools";
+import { changeColor } from "../../utils/svgTools";
 
 type SVGIconProps = {
   icon: string;

@@ -12,7 +12,7 @@ import {
   nodejs,
   mongodb,
   mysql
-} from "./icons";
+} from "../SVG/icons";
 
 import Skill from "./Skill";
 

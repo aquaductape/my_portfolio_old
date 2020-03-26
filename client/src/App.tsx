@@ -3,7 +3,7 @@ import Navigation from "./components/layout/Navigation/Navigation";
 import AboutMe from "./components/AboutMe";
 import Projects from "./components/Projects";
 import Graph from "./components/Graph";
-import SVGDefs from "./components/SVGDefs";
+import SVGDefs from "./components/SVG/SVGDefs";
 import { setTheme } from "./utils/settings";
 
 const Skills = React.lazy(() =>

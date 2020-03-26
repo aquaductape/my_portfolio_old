@@ -1,5 +1,5 @@
-import React from 'react';
-import { ReactComponent as Def } from '../assets/svgModifiers/defs.svg';
+import React from "react";
+import { ReactComponent as Def } from "../../assets/svgModifiers/defs.svg";
 
 export default function SVGDefs() {
   return (

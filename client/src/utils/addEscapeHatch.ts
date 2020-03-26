@@ -1,23 +1,25 @@
 export default function addEscapeHatch(callback: Function) {
+  const html = document.querySelector("html")!;
+
   const removeOnClick = () => {
     callback();
-    document.removeEventListener("click", removeOnClick);
-    document.removeEventListener("keydown", removeOnEscapeKey);
+    html.removeEventListener("click", removeOnClick);
+    html.removeEventListener("keydown", removeOnEscapeKey);
   };
   const removeOnEscapeKey = (e: KeyboardEvent) => {
     if (!e.key.match(/escape/i)) return null;
     callback();
-    document.removeEventListener("click", removeOnClick);
-    document.removeEventListener("keydown", removeOnEscapeKey);
+    html.removeEventListener("click", removeOnClick);
+    html.removeEventListener("keydown", removeOnEscapeKey);
   };
-  document.addEventListener("click", removeOnClick);
-  document.addEventListener("keydown", removeOnEscapeKey);
+  html.addEventListener("click", removeOnClick);
+  html.addEventListener("keydown", removeOnEscapeKey);
 
   return {
     remove() {
       callback();
-      document.removeEventListener("click", removeOnClick);
-      document.removeEventListener("keydown", removeOnEscapeKey);
+      html.removeEventListener("click", removeOnClick);
+      html.removeEventListener("keydown", removeOnEscapeKey);
     }
   };
 }

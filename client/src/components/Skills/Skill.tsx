@@ -41,8 +41,11 @@ export default function Skill({ title, icon }: ISkillProps) {
       animateIconEnter();
 
       addEscapeHatch(() => {
-        animateIconLeave();
-        setHasToggle(() => false);
+        // makes sure it fires last
+        setTimeout(() => {
+          animateIconLeave();
+          setHasToggle(() => false);
+        }, 5);
       });
       setHasToggle(() => true);
     } else {

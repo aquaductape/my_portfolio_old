@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import gsap from "gsap";
+import { IOS } from "../../utils/browserInfo";
+import addEscapeHatch from "../../utils/addEscapeHatch";
 
 interface ISkillProps {
   title: string;
@@ -9,6 +11,7 @@ interface ISkillProps {
 export default function Skill({ title, icon }: ISkillProps) {
   const [animateIconEnter, setAnimateIconEnter] = useState<any>(null);
   const [animateIconLeave, setAnimateIconLeave] = useState<any>(null);
+  const [hasToggle, setHasToggle] = useState(false);
   const svgId = `skill-icon-${title}`;
   const circleId = `.${svgId}__clipPath-circle`;
 
@@ -33,14 +36,37 @@ export default function Skill({ title, icon }: ISkillProps) {
     setAnimateIconLeave(() => () => animation.timeScale(2).reverse());
   }, []);
 
+  const onClickAnimate = () => {
+    if (!hasToggle) {
+      animateIconEnter();
+
+      addEscapeHatch(() => {
+        animateIconLeave();
+        setHasToggle(() => false);
+      });
+      setHasToggle(() => true);
+    } else {
+      setHasToggle(() => false);
+    }
+  };
+
   return (
-    <li
-      className="skills-item"
-      onMouseEnter={animateIconEnter}
-      onMouseLeave={animateIconLeave}
-    >
-      {icon}
-      <p>{title}</p>
-    </li>
+    <>
+      {IOS ? (
+        <li className="skills-item" onClick={onClickAnimate}>
+          {icon}
+          <p>{title}</p>
+        </li>
+      ) : (
+        <li
+          className="skills-item"
+          onMouseEnter={animateIconEnter}
+          onMouseLeave={animateIconLeave}
+        >
+          {icon}
+          <p>{title}</p>
+        </li>
+      )}
+    </>
   );
 }

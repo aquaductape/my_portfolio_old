@@ -765,6 +765,11 @@ section {
   //   padding: 60px 10px 30px 10px;
   // }
 }
+@media (min-width: 755px) {
+  .skills-item {
+    font-size: 0.925rem;
+  }
+}
 
 @media (min-width: 800px) {
   .card {
@@ -776,6 +781,9 @@ section {
 }
 
 @media (min-width: 1000px) {
+  .skills-item {
+    font-size: 1.15rem;
+  }
   .header-bar-inner {
     padding: 10px 80px;
   }

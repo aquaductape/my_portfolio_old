@@ -14,9 +14,6 @@ export default function addEscapeHatch(callback: Function) {
   };
   document.addEventListener("click", removeOnClick);
   document.addEventListener("touchend", removeOnClick);
-  document.addEventListener("touchend", e => {
-    e.changedTouches;
-  });
   document.addEventListener("keydown", removeOnEscapeKey);
 
   return {

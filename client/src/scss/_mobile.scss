@@ -358,7 +358,8 @@ section {
 }
 
 .about-me-area {
-  padding: 60px 10px 30px 10px;
+  position: relative;
+  padding: 60px 10px 60px 10px;
   // min-height: 80vh;
   background: var(--nav-bg-color);
   color: var(--secondary-txt-color);
@@ -368,6 +369,37 @@ section {
   transition: $transitionTheme;
 }
 
+.about-me-background {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 112px;
+  color: var(--hero-color);
+  transition: 500ms color;
+  overflow: hidden;
+
+  svg {
+    width: 100%;
+    // height: 100%;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    // height: 50px;
+    background: linear-gradient(
+      180deg,
+      var(--nav-bg-color),
+      rgba(0, 0, 0, 0) 100%
+    );
+    transition: $transitionTheme;
+  }
+  // z-index: -1;
+}
 .about-me-area-content {
   max-width: 400px;
   width: 100%;
@@ -427,11 +459,12 @@ section {
   line-height: 2.2;
   text-align: left;
   font-size: 1.15rem;
+  z-index: 1;
 }
 
 .about-me-social-links {
-  background: var(--nav-bg-color);
   position: relative;
+  margin-top: -35px;
   color: var(--card-txt);
   transition: $transitionTheme;
 
@@ -448,15 +481,15 @@ section {
 }
 
 .social-links {
-  width: 250px;
-  padding: 15px;
-  margin: 0 auto;
+  position: relative;
   display: flex;
   justify-content: space-around;
+  margin: 0 auto;
+  width: 250px;
+  padding: 15px;
   background: var(--primary-bg);
   border-radius: 15px;
   box-shadow: 0px 16px 12px -7px #0000000f;
-  position: relative;
   z-index: 1;
   transition: $transitionTheme;
 
@@ -521,6 +554,11 @@ section {
   stop {
     stop-color: var(--primary-bg);
   }
+}
+
+#hero-background-gradient {
+  stop-color: var(--nav-bg-color);
+  transition: 500ms stop-color;
 }
 
 .skills-item {

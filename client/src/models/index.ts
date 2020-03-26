@@ -32,6 +32,7 @@ export type theme = {
   btnTxtFocus: /* dark */ "#030f27" | "#fff";
   graphColor: /* dark */ "#bbb" | "#2d42a8";
   iconColor: /* dark */ "#bbb" | "#2d42a8";
+  heroColor: /* dark */ "#192b4cb3" | "#1c2e88ad";
 };
 
 export interface ISettings {

@@ -13,6 +13,7 @@ $btn-bg-focus: #000;
 $primary-bg: #fff;
 $graph-color: #2d42a8;
 $icon-color: #2d42a8;
+$hero-color: #1c2e88ad;
 $transitionTheme: 500ms background-color;
 
 :root {
@@ -31,4 +32,5 @@ $transitionTheme: 500ms background-color;
   --btn-bg-focus: #{$btn-bg-focus};
   --graph-color: #{$graph-color};
   --icon-color: #{$icon-color};
+  --hero-color: #{$hero-color};
 }

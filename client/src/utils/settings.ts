@@ -20,7 +20,8 @@ const settingsConfig: ISettings = {
     btnBgFocus: "#5396f0",
     btnTxtFocus: "#fff",
     graphColor: "#bbb",
-    iconColor: "#bbb"
+    iconColor: "#bbb",
+    heroColor: "#192b4cb3"
   },
   lightTheme: {
     headerColor: "#fff",
@@ -37,7 +38,8 @@ const settingsConfig: ISettings = {
     btnBgFocus: "#000",
     btnTxtFocus: "#fff",
     graphColor: "#2d42a8",
-    iconColor: "#2d42a8"
+    iconColor: "#2d42a8",
+    heroColor: "#1c2e88ad"
   }
 };
 
@@ -127,6 +129,7 @@ const changeCSSVars = (theme: theme): void => {
   );
   document.documentElement.style.setProperty("--graph-color", theme.graphColor);
   document.documentElement.style.setProperty("--icon-color", theme.iconColor);
+  document.documentElement.style.setProperty("--hero-color", theme.heroColor);
 
   // IE11 lacks css :root, this ponyfill is initialized in main file in order to be used
   cssVars({
@@ -144,7 +147,8 @@ const changeCSSVars = (theme: theme): void => {
       "--btn-txt-focus": theme.btnTxtFocus,
       "--btn-bg-focus": theme.btnBgFocus,
       "--graph-color": theme.graphColor,
-      "--icon-color": theme.iconColor
+      "--icon-color": theme.iconColor,
+      "--hero-color": theme.heroColor
     }
   });
 };

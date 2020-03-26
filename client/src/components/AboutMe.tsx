@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { ReactComponent as Logo } from "../assets/logo_fullname.svg";
+import HeroTriangles from "./SVG/HeroTriangles";
 import resumePDF from "../assets/pdf/Caleb_Taylor_Resume.pdf";
 
 export default function AboutMe() {
@@ -29,6 +30,9 @@ export default function AboutMe() {
             projects that are responsive, performant and accessible. Looking
             forward to collaborating and solving problems as a team.
           </p>
+        </div>
+        <div className="about-me-background">
+          <HeroTriangles></HeroTriangles>
         </div>
       </div>
       <div className="about-me-social-links">

@@ -505,31 +505,6 @@ section {
   }
 }
 
-//// hero img
-#hero-img-color1 {
-  stop {
-    stop-color: var(--hero-img-color1);
-  }
-}
-
-#hero-img-color2 {
-  stop {
-    stop-color: var(--hero-img-color2);
-  }
-}
-
-#hero-img-color3 {
-  stop {
-    stop-color: var(--hero-img-color3);
-  }
-}
-
-#hero-img-color4 {
-  stop {
-    stop-color: var(--hero-img-color4);
-  }
-}
-
 /************ Skills **************/
 
 .skills {
@@ -559,6 +534,13 @@ section {
 #hero-background-gradient {
   stop-color: var(--nav-bg-color);
   transition: 500ms stop-color;
+}
+
+#hero-stroke {
+  stop {
+    stop-color: var(--hero-color);
+    transition: 500ms stop-color;
+  }
 }
 
 .skills-item {

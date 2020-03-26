@@ -19,17 +19,20 @@ export default function HeroTriangles() {
         />
       </defs>
       <pattern
-        id="pattern-cubes"
+        id="pattern-triangles"
         x="0"
         y="-20"
-        patternUnits="userSpaceOnUse"
         width="950"
         height="170"
+        patternUnits="userSpaceOnUse"
+        // y="-60"
+        // width="1250"
+        // height="270"
         viewBox="0 0 908.5405 142.1712"
       >
         <g
           fill="none"
-          stroke="currentColor"
+          stroke="url(#hero-stroke)"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -47,7 +50,13 @@ export default function HeroTriangles() {
           fillRule="evenodd"
         />
       </pattern>
-      <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-cubes)" />
+      <rect
+        x="0"
+        y="0"
+        width="100%"
+        height="100%"
+        fill="url(#pattern-triangles)"
+      />
     </svg>
   );
   // return (

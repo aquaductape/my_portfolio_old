@@ -6,8 +6,8 @@
     <linearGradient id="match-background">
       <stop stop-color="#000"/>
     </linearGradient>
-    <!-- <linearGradient id="hero-background-gradient">
+    <linearGradient id="hero-stroke">
       <stop stop-color="#000"></stop>
-    </linearGradient> -->
+    </linearGradient>
   </defs> 
 </svg>

@@ -53,23 +53,26 @@ export default function Skill({ title, icon }: ISkillProps) {
     }
   };
 
-  return (
-    <>
-      {IOS && !IOS13 ? (
-        <li className="skills-item" onClick={onClickAnimate}>
-          {icon}
-          <p>{title}</p>
-        </li>
-      ) : (
-        <li
-          className="skills-item"
-          onMouseEnter={animateIconEnter}
-          onMouseLeave={animateIconLeave}
-        >
-          {icon}
-          <p>{title}</p>
-        </li>
-      )}
-    </>
-  );
+  let skillItem;
+
+  if (IOS && !IOS13) {
+    skillItem = (
+      <li className="skills-item" onClick={onClickAnimate}>
+        {icon}
+        <p>{title}</p>
+      </li>
+    );
+  } else {
+    skillItem = (
+      <li
+        className="skills-item"
+        onMouseEnter={animateIconEnter}
+        onMouseLeave={animateIconLeave}
+      >
+        {icon}
+        <p>{title}</p>
+      </li>
+    );
+  }
+  return <>{skillItem}</>;
 }

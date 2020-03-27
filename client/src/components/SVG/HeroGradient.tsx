@@ -5,8 +5,8 @@ export default function HeroGradient() {
     <svg xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="a">
-          <stop offset="0" stop-color="currentColor" />
-          <stop offset="1" stop-color="currentColor" stopOpacity="0" />
+          <stop offset="0" stopColor="currentColor" />
+          <stop offset="1" stopColor="currentColor" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           xlinkHref="#a"

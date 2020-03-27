@@ -537,10 +537,8 @@ section {
 }
 
 #hero-stroke {
-  stop {
-    stop-color: var(--hero-color);
-    transition: 500ms stop-color;
-  }
+  stop-color: var(--hero-color);
+  transition: 500ms stop-color;
 }
 
 .skills-item {

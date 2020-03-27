@@ -18,7 +18,7 @@ export default function HeroTriangles() {
           gradientTransform="matrix(1 0 0 3.07896 0 7.2804)"
         />
 
-        <linearGradient id="c">
+        <linearGradient id="hero-stroke-solid">
           <stop id="hero-stroke" />
         </linearGradient>
       </defs>
@@ -36,7 +36,7 @@ export default function HeroTriangles() {
       >
         <g
           fill="none"
-          stroke="url(#c)"
+          stroke="url(#hero-stroke-solid)"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"

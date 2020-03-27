@@ -5,6 +5,7 @@ const settingsConfig: ISettings = {
   darkMode: false,
   hideHeader: true,
   headerTop: false,
+  //  AVOID hex alpha values for older browsers!!! use rgba instead
   darkTheme: {
     headerColor: "#fff",
     navTxtColor: "#bbb",
@@ -15,17 +16,18 @@ const settingsConfig: ISettings = {
     cardBg: "#142546",
     cardTxt: "#ccc",
     btnTxt: "#5396f0",
-    btnBG: "#00000000",
+    btnBG: "rgba(0, 0, 0, 0)",
     btnBorder: "#5396f0",
     btnBgFocus: "#5396f0",
     btnTxtFocus: "#fff",
     graphColor: "#bbb",
     iconColor: "#bbb",
-    heroColor: "#192b4cb3"
+    heroColor: "rgba(25, 43, 76, 0.7)"
   },
+  //  AVOID hex alpha values for older browsers!!! use rgba instead
   lightTheme: {
     headerColor: "#fff",
-    navTxtColor: "#ffffffad",
+    navTxtColor: "#bbc2e3",
     navBgColor: "#2d42a8",
     primaryTxtColor: "#2d42a8",
     secondaryTxtColor: "#ccc",
@@ -39,7 +41,7 @@ const settingsConfig: ISettings = {
     btnTxtFocus: "#fff",
     graphColor: "#2d42a8",
     iconColor: "#2d42a8",
-    heroColor: "#1c2e88ad"
+    heroColor: "rgba(28, 46, 136, 0.68)"
   }
 };
 

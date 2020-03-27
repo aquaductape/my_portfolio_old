@@ -133,8 +133,6 @@ const changeCSSVars = (theme: theme): void => {
 
   // IE11 lacks css :root, this ponyfill is initialized in main file in order to be used
   cssVars({
-    onlyLegacy: true,
-    watch: true,
     variables: {
       "--nav-txt-color": theme.navTxtColor,
       "--nav-bg-color": theme.navBgColor,

@@ -49,7 +49,7 @@ section {
 .header-bar {
   background: var(--nav-bg-color);
   transition: 1000ms transform;
-  z-index: 3;
+  z-index: 50;
   transition: $transitionTheme, transform 500ms, box-shadow 500ms;
 }
 
@@ -67,7 +67,7 @@ section {
   background: var(--nav-bg-color);
   color: var(--secondary-txt-color);
   box-shadow: 0px 15px 32px -7px #00000042;
-  z-index: 2;
+  z-index: 49;
   top: 60px;
   transition: $transitionTheme, transform 500ms, box-shadow 500ms;
 }
@@ -382,7 +382,6 @@ section {
   svg {
     width: 100%;
   }
-  z-index: 1;
 }
 
 .about-me-background-gradient {
@@ -406,7 +405,6 @@ section {
 .about-me-contact {
   display: flex;
   flex-direction: column;
-  z-index: 2;
 }
 
 .contact-item {
@@ -457,7 +455,6 @@ section {
   line-height: 2.2;
   text-align: left;
   font-size: 1.15rem;
-  z-index: 1;
 }
 
 .about-me-social-links {
@@ -465,9 +462,8 @@ section {
   margin-top: -35px;
   color: var(--card-txt);
   transition: $transitionTheme;
-  z-index: 2;
 
-  &::after {
+  &::before {
     content: "";
     position: absolute;
     bottom: 0;
@@ -489,7 +485,6 @@ section {
   background: var(--primary-bg);
   border-radius: 15px;
   box-shadow: 0px 16px 12px -7px #0000000f;
-  z-index: 1;
   transition: $transitionTheme;
 
   a {

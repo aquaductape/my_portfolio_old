@@ -1,6 +1,6 @@
 import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
-import cssVars from "css-vars-ponyfill";
+// import cssVars from "css-vars-ponyfill";
 import "focus-visible";
 import React from "react";
 // import { hydrate, render } from "react-dom";
@@ -9,10 +9,10 @@ import "./scss/index.scss";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-cssVars({
-  onlyLegacy: true,
-  watch: true
-});
+// cssVars({
+//   onlyLegacy: true,
+//   watch: true
+// });
 
 ReactDOM.render(<App />, document.getElementById("root"));
 // const rootElement = document.getElementById("root");

@@ -614,6 +614,48 @@ section {
     color: var(--btn-txt-focus);
   }
 }
+/************ footer ***********/
+
+.pfooter {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 10px;
+  background: var(--nav-bg-color);
+  color: var(--nav-txt-color);
+}
+
+.pfooter-contact {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.pfooter-contact-item {
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  // text-decoration: none;
+  & > a {
+    transition: 500ms color;
+    &:hover {
+      color: var(--btn-bg-focus);
+      transition: 500ms color;
+    }
+  }
+}
+
+.pfooter-social {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.55rem;
+}
+
+.pfooter-social-item-link {
+  transition: 500ms color;
+  &:hover {
+    color: var(--btn-bg-focus);
+  }
+}
 
 /********** coding-activity ******/
 
@@ -721,13 +763,25 @@ section {
     padding: 10px 50px;
   }
 
-  //   .about-me-area {
-  //   padding: 60px 10px 30px 10px;
-  // }
+  .pfooter-social {
+    font-size: 2.125rem;
+  }
 }
 @media (min-width: 755px) {
   .skills-item {
     font-size: 0.925rem;
+  }
+  .pfooter {
+    flex-direction: row;
+    justify-content: center;
+    padding: 50px 10px;
+  }
+  .pfooter-contact {
+    text-align: left;
+    margin-right: 150px;
+  }
+  .pfooter-social-item {
+    margin-right: 50px;
   }
 }
 

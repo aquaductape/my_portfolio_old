@@ -9,6 +9,9 @@ import { setTheme } from "./utils/settings";
 const Skills = React.lazy(() =>
   import(/* webpackChunkName: "skills" */ "./components/Skills/Skills")
 );
+const Footer = React.lazy(() =>
+  import(/* webpackChunkName: "footer" */ "./components/layout/Footer/Footer")
+);
 
 const theme = localStorage.getItem("theme");
 if (theme) setTheme(theme);
@@ -25,6 +28,9 @@ const App: React.FC = () => {
       </Suspense>
       <Projects></Projects>
       <Graph></Graph>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Footer></Footer>
+      </Suspense>
       <SVGDefs></SVGDefs>
     </Fragment>
   );

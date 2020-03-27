@@ -381,24 +381,21 @@ section {
 
   svg {
     width: 100%;
-    // height: 100%;
   }
+  z-index: 1;
+}
 
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
+.about-me-background-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 112px;
+  color: var(--nav-bg-color);
+  transition: 500ms color;
+  svg {
     width: 100%;
-    // height: 50px;
-    background: linear-gradient(
-      180deg,
-      var(--nav-bg-color),
-      rgba(0, 0, 0, 0) 100%
-    );
-    transition: $transitionTheme;
   }
-  // z-index: -1;
 }
 .about-me-area-content {
   max-width: 400px;
@@ -409,6 +406,7 @@ section {
 .about-me-contact {
   display: flex;
   flex-direction: column;
+  z-index: 2;
 }
 
 .contact-item {
@@ -467,6 +465,7 @@ section {
   margin-top: -35px;
   color: var(--card-txt);
   transition: $transitionTheme;
+  z-index: 2;
 
   &::after {
     content: "";
@@ -515,10 +514,6 @@ section {
   grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 }
 
-// .skills-icons-hue-color {
-//   flood-color: var(--primary-txt-color);
-// }
-
 #gradient-to-solid {
   stop {
     stop-color: var(--icon-color);
@@ -531,20 +526,9 @@ section {
   }
 }
 
-#hero-background-gradient {
-  stop-color: var(--nav-bg-color);
-  transition: 500ms stop-color;
-}
-
-#hero-stroke {
-  stop-color: var(--hero-color);
-  transition: 500ms stop-color;
-}
-
 .skills-item {
   color: var(--icon-color);
   text-align: center;
-  font-size: 0.625rem;
   font-size: 0.725rem;
   font-weight: 700;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

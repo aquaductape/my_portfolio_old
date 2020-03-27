@@ -5,6 +5,7 @@ import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { ReactComponent as Logo } from "../assets/logo_fullname.svg";
 import HeroTriangles from "./SVG/HeroTriangles";
 import resumePDF from "../assets/pdf/Caleb_Taylor_Resume.pdf";
+import HeroGradient from "./SVG/HeroGradient";
 
 export default function AboutMe() {
   return (
@@ -33,6 +34,9 @@ export default function AboutMe() {
         </div>
         <div className="about-me-background">
           <HeroTriangles></HeroTriangles>
+          <div className="about-me-background-gradient">
+            <HeroGradient></HeroGradient>
+          </div>
         </div>
       </div>
       <div className="about-me-social-links">

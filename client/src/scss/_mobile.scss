@@ -622,6 +622,7 @@ section {
   padding: 30px 10px;
   background: var(--nav-bg-color);
   color: var(--nav-txt-color);
+  transition: $transitionTheme;
 }
 
 .pfooter-contact {

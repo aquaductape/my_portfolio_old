@@ -18,6 +18,9 @@ type IEvent = {
   keepElementRef: () => void;
   runAllExits: () => void;
 };
+export type IAddEscapeHatchResult = {
+  runAllExits: () => void;
+};
 type ICallBackList = {
   element: Element;
   stopWhenTargetIsRemoved: boolean;
@@ -104,7 +107,7 @@ export default function addEscapeHatch({
   build,
   toggle = true,
   stopWhenTargetIsRemoved = true
-}: IAddEscapeHatch) {
+}: IAddEscapeHatch): IAddEscapeHatchResult {
   if (parentContains(target)) {
     if (!toggle) return manualExit;
     onExitWithTearDownNode();

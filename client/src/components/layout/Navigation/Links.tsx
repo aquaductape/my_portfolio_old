@@ -1,18 +1,17 @@
 import React from "react";
 import { Link, animateScroll as Scroll } from "react-scroll";
+import { IAddEscapeHatchResult } from "../../../utils/addEscapeHatch";
 
 interface ILinksProps {
   hamburgerMenuEl: React.RefObject<HTMLButtonElement>;
   aboutMeLinkEl: React.MutableRefObject<any>;
-  setSettings: React.Dispatch<React.SetStateAction<boolean>>;
-  setMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  menuEscapeHatchRef: React.MutableRefObject<IAddEscapeHatchResult>;
 }
 
 export default function Links({
   hamburgerMenuEl,
-  setSettings,
-  setMenu,
-  aboutMeLinkEl
+  aboutMeLinkEl,
+  menuEscapeHatchRef
 }: ILinksProps) {
   // const aboutMeLinkEl = useRef<any>(null);
 
@@ -22,8 +21,9 @@ export default function Links({
       hamburgerMenu.classList.remove("active");
     }
 
-    setSettings(() => false);
-    setMenu(() => false);
+    menuEscapeHatchRef.current.runAllExits();
+    // setSettings(() => false);
+    // setMenu(() => false);
   };
   return (
     <>

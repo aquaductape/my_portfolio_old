@@ -4,6 +4,7 @@ import {
   setNavRelative,
   setNavVisible
 } from "../../../utils/settings";
+import { IAddEscapeHatchResult } from "../../../utils/addEscapeHatch";
 
 interface ICheckboxProps {
   id: string;
@@ -19,9 +20,7 @@ interface ICheckboxProps {
     navVisible: boolean;
     navTop: boolean;
   };
-  setSettings: React.Dispatch<React.SetStateAction<boolean>>;
-  setMenu: React.Dispatch<React.SetStateAction<boolean>>;
-  hamburgerMenuEl: React.RefObject<HTMLButtonElement>;
+  menuEscapeHatchRef: React.MutableRefObject<IAddEscapeHatchResult>;
   allowDisable: boolean;
   disabled: boolean;
   setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
@@ -33,12 +32,10 @@ export default function Checkbox({
   defaultChecked,
   navSettings,
   setNavSettings,
-  setSettings,
-  setMenu,
-  hamburgerMenuEl,
   allowDisable,
   disabled,
-  setDisabled
+  setDisabled,
+  menuEscapeHatchRef
 }: ICheckboxProps) {
   const tabIndex = allowDisable
     ? { tabIndex: disabled ? -1 : 0 }
@@ -81,10 +78,9 @@ export default function Checkbox({
     setNavRelative(isChecked);
     setDisabled(() => !disabled);
 
-    if (hamburgerMenuEl.current && isChecked && windowScrollY > 55) {
-      hamburgerMenuEl.current.classList.remove("active");
-      setMenu(() => false);
-      setSettings(() => false);
+    if (isChecked && windowScrollY > 55) {
+      console.log("onInputnavpos");
+      menuEscapeHatchRef.current.runAllExits();
     }
   };
 
@@ -127,10 +123,9 @@ export default function Checkbox({
     setNavSettings(() => ({ ...newNavSettings }));
     setNavRelative(isChecked);
     setDisabled(() => isChecked);
-    if (hamburgerMenuEl.current && isChecked && windowScrollY > 55) {
-      hamburgerMenuEl.current.classList.remove("active");
-      setMenu(() => false);
-      setSettings(() => false);
+    if (isChecked && windowScrollY > 55) {
+      console.log("setNavToponKey");
+      menuEscapeHatchRef.current.runAllExits();
     }
   };
 

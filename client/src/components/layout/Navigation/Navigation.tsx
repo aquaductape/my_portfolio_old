@@ -6,15 +6,18 @@ import { ReactComponent as LogoSimple } from "../../../assets/logo_monochrome.sv
 import Settings from "./Settings";
 import { isNavVisible, isNavTop } from "../../../utils/settings";
 import Links from "./Links";
+import addEscapeHatch from "../../../utils/addEscapeHatch";
 
 const Collapse = React.lazy(() =>
   import(/* webpackChunkName: "collapse" */ "@kunukn/react-collapse")
 );
 
 export default function Navigation() {
-  const hamburgerMenuEl = useRef<HTMLButtonElement>(null);
-  const aboutMeLinkEl = useRef<any>(null);
-  const navEl = useRef<HTMLElement>(null);
+  const hamburgerMenuRef = useRef<HTMLButtonElement>(null);
+  const aboutMeLinkRef = useRef<any>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const menuEscapeHatchRef = useRef<any>(null);
   const [toggleMenu, setMenu] = useState(false);
   const [toggleHeader, setHeader] = useState(false);
   const [toggleHeaderShadow, setHeaderShadow] = useState(false);
@@ -110,21 +113,41 @@ export default function Navigation() {
   };
 
   const onToggleMenu = () => {
-    const hamburgerMenu = hamburgerMenuEl.current;
-    const nav = navEl.current;
-    if (!hamburgerMenu || !nav) return;
-    if (toggleMenu) {
-      hamburgerMenu.classList.remove("active");
-    } else {
-      hamburgerMenu.classList.add("active");
-      nav.setAttribute("style", "");
-    }
-    setSettings(() => false);
-    setMenu(() => !toggleMenu);
+    const hamburgerMenu = hamburgerMenuRef.current!;
+    const nav = navRef.current!;
+
+    menuEscapeHatchRef.current = addEscapeHatch({
+      target: hamburgerMenu,
+      build: () => {
+        hamburgerMenu.classList.add("active");
+        nav.setAttribute("style", "");
+        setMenu(() => !toggleMenu);
+        setSettings(() => false);
+      },
+      onStart: e => {
+        const target = e.event.target as HTMLElement;
+        const header = headerRef.current!;
+        const navMenu = navRef.current!;
+
+        if (header.contains(target) || navMenu.contains(target)) {
+          return false;
+        }
+
+        return true;
+      },
+      onExit: () => {
+        hamburgerMenu.classList.remove("active");
+        // don't use toggleMenu closure since it will reference an outdated value
+        // either use the argument in setState function or save variable in useRef
+        // or use regular value instead of banging it
+        setMenu(() => false);
+        setSettings(() => false);
+      }
+    });
   };
 
   const onTransitionEnd = () => {
-    const nav = navEl.current;
+    const nav = navRef.current;
     if (!nav) return;
     if (!toggleMenu) {
       nav.setAttribute("style", "visibility: hidden");
@@ -135,6 +158,7 @@ export default function Navigation() {
     <header>
       <div
         className={`${shadowHeaderCss()} ${hideHeaderCss()} ${navTopCss()} header-bar`}
+        ref={headerRef}
       >
         <div className="header-bar-inner">
           <div className="logo">
@@ -152,10 +176,9 @@ export default function Navigation() {
           <div className="nav-desktop">
             <ul className="nav-desktop-group">
               <Links
-                aboutMeLinkEl={aboutMeLinkEl}
-                hamburgerMenuEl={hamburgerMenuEl}
-                setSettings={setSettings}
-                setMenu={setMenu}
+                aboutMeLinkEl={aboutMeLinkRef}
+                hamburgerMenuEl={hamburgerMenuRef}
+                menuEscapeHatchRef={menuEscapeHatchRef}
               ></Links>
             </ul>
           </div>
@@ -168,7 +191,7 @@ export default function Navigation() {
             aria-expanded={toggleMenu}
             aria-label={toggleMenu ? "close mobile nav" : "open mobile nav"}
             onClick={onToggleMenu}
-            ref={hamburgerMenuEl}
+            ref={hamburgerMenuRef}
             onTransitionEnd={onTransitionEnd}
           >
             <span
@@ -182,13 +205,12 @@ export default function Navigation() {
       </div>
 
       <div className={`${hideNavLinksCss()} ${navTopCss()} nav-mobile`}>
-        <nav style={{ visibility: "hidden" }} ref={navEl}>
+        <nav style={{ visibility: "hidden" }} ref={navRef}>
           <ul className="nav-mobile-group">
             <Links
-              aboutMeLinkEl={aboutMeLinkEl}
-              hamburgerMenuEl={hamburgerMenuEl}
-              setSettings={setSettings}
-              setMenu={setMenu}
+              aboutMeLinkEl={aboutMeLinkRef}
+              hamburgerMenuEl={hamburgerMenuRef}
+              menuEscapeHatchRef={menuEscapeHatchRef}
             ></Links>
             <li className="nav-list">
               <button
@@ -219,11 +241,7 @@ export default function Navigation() {
                 <Settings
                   navSettings={navSettings}
                   setNavSettings={setNavSettings}
-                  setSettings={setSettings}
-                  toggleSettings={toggleSettings}
-                  toggleMenu={toggleMenu}
-                  setMenu={setMenu}
-                  hamburgerMenuEl={hamburgerMenuEl}
+                  menuEscapeHatchRef={menuEscapeHatchRef}
                 ></Settings>
               </Collapse>
             </Suspense>

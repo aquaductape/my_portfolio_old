@@ -6,9 +6,7 @@ import Checkbox from "./Checkbox";
 export default function Settings({
   navSettings,
   setNavSettings,
-  setSettings,
-  setMenu,
-  hamburgerMenuEl
+  menuEscapeHatchRef
 }: ISettingsReactComponent) {
   const [disabled, setDisabled] = useState(navSettings.navTop);
 
@@ -51,14 +49,12 @@ export default function Settings({
             id={id}
             labelTextContent={label}
             defaultChecked={defaultChecked}
-            hamburgerMenuEl={hamburgerMenuEl}
             navSettings={navSettings}
             setNavSettings={setNavSettings}
-            setSettings={setSettings}
-            setMenu={setMenu}
             allowDisable={allowDisable}
             disabled={disabled}
             setDisabled={setDisabled}
+            menuEscapeHatchRef={menuEscapeHatchRef}
           ></Checkbox>
         </li>
       );

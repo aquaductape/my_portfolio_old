@@ -1,3 +1,5 @@
+import { IAddEscapeHatchResult } from "../utils/addEscapeHatch";
+
 export type WakaData = [string, string, number];
 
 export type WakaSchema = [
@@ -55,9 +57,5 @@ export interface ISettingsReactComponent {
     navVisible: boolean;
     navTop: boolean;
   };
-  setSettings: React.Dispatch<React.SetStateAction<boolean>>;
-  toggleSettings: boolean;
-  setMenu: React.Dispatch<React.SetStateAction<boolean>>;
-  toggleMenu: boolean;
-  hamburgerMenuEl: React.RefObject<HTMLButtonElement>;
+  menuEscapeHatchRef: React.MutableRefObject<IAddEscapeHatchResult>;
 }

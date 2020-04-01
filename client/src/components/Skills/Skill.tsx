@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
 import { IOS, IOS13 } from "../../utils/browserInfo";
 import addEscapeHatch from "../../utils/addEscapeHatch";
@@ -12,6 +12,7 @@ export default function Skill({ title, icon }: ISkillProps) {
   const [animateIconEnter, setAnimateIconEnter] = useState<any>(null);
   const [animateIconLeave, setAnimateIconLeave] = useState<any>(null);
   const [hasToggle, setHasToggle] = useState(false);
+  const liRef = useRef<HTMLLIElement>(null);
   const svgId = `skill-icon-${title}`;
   const circleId = `.${svgId}__clipPath-circle`;
 
@@ -37,27 +38,21 @@ export default function Skill({ title, icon }: ISkillProps) {
   }, []);
 
   const onClickAnimate = () => {
-    if (!hasToggle) {
-      animateIconEnter();
+    const liEl = liRef.current!;
 
-      addEscapeHatch(() => {
-        // makes sure it fires last
-        setTimeout(() => {
-          animateIconLeave();
-          setHasToggle(() => false);
-        }, 5);
-      });
-      setHasToggle(() => true);
-    } else {
-      setHasToggle(() => false);
-    }
+    addEscapeHatch({
+      target: liEl,
+      toggle: false,
+      build: animateIconEnter,
+      onExit: animateIconLeave
+    });
   };
 
   let skillItem;
 
   if (IOS && !IOS13) {
     skillItem = (
-      <li className="skills-item" onClick={onClickAnimate}>
+      <li className="skills-item" ref={liRef} onClick={onClickAnimate}>
         {icon}
         <p>{title}</p>
       </li>

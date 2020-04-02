@@ -384,11 +384,6 @@ section {
   }
 }
 
-#junk-pattern-gradient {
-  stop-color: var(--hero-color);
-  transition: 500ms stop-color;
-}
-
 .about-me-background-gradient {
   position: absolute;
   top: 0;
@@ -400,6 +395,11 @@ section {
   svg {
     width: 100%;
   }
+}
+
+#junk-pattern-gradient {
+  stop-color: var(--nav-bg-color);
+  transition: 500ms stop-color;
 }
 .about-me-area-content {
   max-width: 400px;

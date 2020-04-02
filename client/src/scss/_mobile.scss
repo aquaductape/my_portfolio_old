@@ -599,13 +599,13 @@ section {
 }
 
 .card-link-item {
-  display: block;
   background: var(--btn-bg);
   color: var(--btn-txt);
   // When there's border radius ,if the type of element is inline,
   // it will have extremely faint broken secondary border,
   // I think what's happening is parts of element's content is bigger than the border
   // The fix is to set the element to block
+  // However in IE and Edge, there's always a faint outline on border, solution is to set border to transparent
   border: 2px solid var(--btn-border);
   padding: 5px 10px;
   border-radius: 30px;

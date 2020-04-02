@@ -30,7 +30,7 @@ export type theme = {
   cardTxt: /* dark */ "#ccc" | "#888";
   btnTxt: /* dark */ "#5396f0" | "#fff";
   btnBG: /* dark */ "rgba(0, 0, 0, 0)" | "#011daa";
-  btnBorder: /* dark */ "#5396f0" | "#fff";
+  btnBorder: /* dark */ "#5396f0" | "rgba(0, 0, 0, 0)";
   btnBgFocus: /* dark */ "#5396f0" | "#000";
   btnTxtFocus: /* dark */ "#030f27" | "#fff";
   graphColor: /* dark */ "#bbb" | "#2d42a8";

@@ -37,7 +37,7 @@ const settingsConfig: ISettings = {
     cardTxt: "#888",
     btnTxt: "#fff",
     btnBG: "#011daa",
-    btnBorder: "#fff",
+    btnBorder: "rgba(0, 0, 0, 0)",
     btnBgFocus: "#000",
     btnTxtFocus: "#fff",
     graphColor: "#2d42a8",

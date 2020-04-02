@@ -4,14 +4,12 @@ export default function HeroTriangles() {
     <svg xmlns="http://www.w3.org/2000/svg">
       <pattern
         id="pattern-triangles"
+        className="junk-pattern-triangles"
         x="0"
         y="-20"
         width="950"
         height="170"
         patternUnits="userSpaceOnUse"
-        // y="-60"
-        // width="1250"
-        // height="270"
         viewBox="0 0 908.5405 142.1712"
       >
         <g

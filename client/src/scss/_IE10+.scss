@@ -22,6 +22,14 @@
     }
   }
 
+  #junk-pattern-gradient {
+    stop-color: currentColor;
+  }
+  // #junk-pattern-gradient-container {
+  //   color: var(--hero-color);
+  //   transition: 1000ms color;
+  // }
+
   @media (min-width: 770px) {
     .skills-item {
       width: 100px;

@@ -384,6 +384,11 @@ section {
   }
 }
 
+#junk-pattern-gradient {
+  stop-color: var(--hero-color);
+  transition: 500ms stop-color;
+}
+
 .about-me-background-gradient {
   position: absolute;
   top: 0;

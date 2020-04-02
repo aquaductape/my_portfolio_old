@@ -24,7 +24,8 @@ const settingsConfig: ISettings = {
     iconColor: "#bbb",
     heroColor: "rgba(25, 43, 76, 0.7)"
   },
-  //  AVOID hex alpha values for older browsers!!! use rgba instead
+  // AVOID hex alpha values for older browsers(IE and Edge Legacy)!!!
+  // use rgba instead
   lightTheme: {
     headerColor: "#fff",
     navTxtColor: "#bbc2e3",

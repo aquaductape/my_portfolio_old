@@ -10,14 +10,14 @@ export default function HeroGradient() {
         <linearGradient id="grad1" gradientTransform="rotate(90)">
           <stop
             offset="0"
-            stop-color="currentColor"
+            stopColor="currentColor"
             className="junk-pattern-gradient"
           ></stop>
           <stop
             offset="1"
-            stop-color="currentColor"
+            stopColor="currentColor"
             className="junk-pattern-gradient"
-            stop-opacity="0"
+            stopOpacity="0"
           ></stop>
         </linearGradient>
       </defs>

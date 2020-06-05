@@ -27,7 +27,7 @@ export default function Navigation() {
   );
   const [navSettings, setNavSettings] = useState({
     navVisible: isNavVisible(),
-    navTop: isNavTop()
+    navTop: isNavTop(),
   });
 
   useEffect(() => {
@@ -124,7 +124,7 @@ export default function Navigation() {
         setMenu(() => !toggleMenu);
         setSettings(() => false);
       },
-      onStart: e => {
+      onStart: (e) => {
         const target = e.event.target as HTMLElement;
         const header = headerRef.current!;
         const navMenu = navRef.current!;
@@ -142,7 +142,7 @@ export default function Navigation() {
         // or use regular value instead of banging it
         setMenu(() => false);
         setSettings(() => false);
-      }
+      },
     });
   };
 
@@ -164,7 +164,7 @@ export default function Navigation() {
           <div className="logo">
             <a
               href="#page-top"
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 Scroll.scrollToTop();
               }}
@@ -187,7 +187,7 @@ export default function Navigation() {
             // using classList to add class because it removes focus visible class
             // which is added dynamically
             // className={`nav-btn hambuger-menu ${toggleMenu ? "active" : ""}`}
-            className="nav-btn hambuger-menu"
+            className="nav-btn hamburger-menu"
             aria-expanded={toggleMenu}
             aria-label={toggleMenu ? "close mobile nav" : "open mobile nav"}
             onClick={onToggleMenu}

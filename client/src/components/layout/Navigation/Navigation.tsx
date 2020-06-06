@@ -230,7 +230,7 @@ export default function Navigation() {
                 </span>
               </button>
             </li>
-            <Suspense fallback={null}>
+            <Suspense fallback={<div></div>}>
               <Collapse isOpen={!toggleSettingsMobile || toggleSettings}>
                 {/*
               In this case it's overkill to remove content

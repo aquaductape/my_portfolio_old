@@ -22,7 +22,7 @@ const settingsConfig: ISettings = {
     btnTxtFocus: "#fff",
     graphColor: "#bbb",
     iconColor: "#bbb",
-    heroColor: "rgba(25, 43, 76, 0.7)"
+    heroColor: "rgba(25, 43, 76, 0.7)",
   },
   // AVOID hex alpha values for older browsers(IE and Edge Legacy)!!!
   // use rgba instead
@@ -42,41 +42,60 @@ const settingsConfig: ISettings = {
     btnTxtFocus: "#fff",
     graphColor: "#2d42a8",
     iconColor: "#2d42a8",
-    heroColor: "rgba(28, 46, 136, 0.68)"
-  }
+    heroColor: "rgba(28, 46, 136, 0.68)",
+  },
 };
 
 export const setTheme = (theme: string) => {
   const { darkTheme, lightTheme } = settingsConfig;
-  if (theme === "dark") {
-    localStorage.setItem("theme", "dark");
-    changeTheme(darkTheme);
-  } else {
-    localStorage.setItem("theme", "light");
-    changeTheme(lightTheme);
+  try {
+    if (theme === "dark") {
+      localStorage.setItem("theme", "dark");
+      changeTheme(darkTheme);
+    } else {
+      localStorage.setItem("theme", "light");
+      changeTheme(lightTheme);
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 
 export const isNavVisible = (): boolean => {
-  const item = localStorage.getItem("navVisible");
-  if (!item) return true;
-
-  return item === "true";
+  try {
+    const item = localStorage.getItem("navVisible") || "true";
+    return item === "true";
+  } catch (err) {
+    console.log(err);
+  }
+  return true;
 };
 
 export const isNavTop = (): boolean => {
-  const item = localStorage.getItem("navRelative");
-  if (!item) return false;
+  try {
+    const item = localStorage.getItem("navRelative") || "false";
 
-  return item === "true";
+    return item === "true";
+  } catch (err) {
+    console.log(err);
+  }
+  return false;
 };
 
 export const setNavRelative = (isRelative: boolean): void => {
-  localStorage.setItem("navRelative", isRelative.toString());
+  try {
+    localStorage.setItem("navRelative", isRelative.toString());
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const setNavVisible = (isVisible: boolean): void => {
-  localStorage.setItem("navVisible", isVisible.toString());
+  try {
+    localStorage.setItem("navVisible", isVisible.toString());
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const changeTheme = (theme: theme): void => {
@@ -153,7 +172,7 @@ const changeCSSVars = (theme: theme): void => {
       "--btn-bg-focus": theme.btnBgFocus,
       "--graph-color": theme.graphColor,
       "--icon-color": theme.iconColor,
-      "--hero-color": theme.heroColor
-    }
+      "--hero-color": theme.heroColor,
+    },
   });
 };

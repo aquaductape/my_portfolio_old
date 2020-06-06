@@ -6,12 +6,17 @@ import Checkbox from "./Checkbox";
 export default function Settings({
   navSettings,
   setNavSettings,
-  menuEscapeHatchRef
+  menuEscapeHatchRef,
 }: ISettingsReactComponent) {
   const [disabled, setDisabled] = useState(navSettings.navTop);
 
   const isDarkMode = (): boolean => {
-    const item = localStorage.getItem("theme");
+    let item: string | null = "light";
+    try {
+      item = localStorage.getItem("theme");
+    } catch (err) {
+      console.log(err);
+    }
     if (!item) return false;
 
     return item === "dark";
@@ -22,20 +27,20 @@ export default function Settings({
       id: "cb-darkMode",
       label: "Dark Mode",
       defaultChecked: isDarkMode(),
-      allowDisable: false
+      allowDisable: false,
     },
     {
       id: "cb-hideNav",
       label: "Hide Navigation when Scrolling Down",
       defaultChecked: navSettings.navVisible,
-      allowDisable: true
+      allowDisable: true,
     },
     {
       id: "cb-navTop",
       label: "Keep Navigation at Top",
       defaultChecked: navSettings.navTop,
-      allowDisable: false
-    }
+      allowDisable: false,
+    },
   ];
 
   const renderCheckboxes = checkboxList.map(

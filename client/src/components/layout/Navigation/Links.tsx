@@ -11,7 +11,7 @@ interface ILinksProps {
 export default function Links({
   hamburgerMenuEl,
   aboutMeLinkEl,
-  menuEscapeHatchRef
+  menuEscapeHatchRef,
 }: ILinksProps) {
   // const aboutMeLinkEl = useRef<any>(null);
 
@@ -21,7 +21,10 @@ export default function Links({
       hamburgerMenu.classList.remove("active");
     }
 
-    menuEscapeHatchRef.current.runAllExits();
+    if (menuEscapeHatchRef.current) {
+      menuEscapeHatchRef.current.runAllExits();
+    }
+
     // setSettings(() => false);
     // setMenu(() => false);
   };

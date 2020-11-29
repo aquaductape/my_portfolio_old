@@ -17,9 +17,9 @@ export default function Projects() {
               alt="screenshot of tic-tac-toe game"
             />
             <div className="card-content">
-              <h3 className="card-title">Tic Tac Toe</h3>
+              <h3 className="card-title">3nRow - Tic Tac Toe</h3>
               <p className="card-pg">
-                A tic-tac-toe game where it involved no frameworks, no JQuery,
+                A Tic Tac Toe game where it involved no frameworks, no JQuery,
                 everything vanilla. Animations were done using glorious SVG.
               </p>
               <div className="card-link-container">

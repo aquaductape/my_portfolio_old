@@ -42,8 +42,18 @@ li {
 
 button {
   cursor: pointer;
+  border: none;
   font: inherit;
+  outline: none;
 }
+button::-moz-focus-inner {
+  border: 0;
+}
+
+.click-me {
+  outline: initial;
+}
+
 a {
   color: inherit;
 }

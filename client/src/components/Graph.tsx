@@ -12,7 +12,7 @@ export default function Graph() {
       </h2>
       <p>(Powered by wakatime.com)</p>
       <div className="container">
-        <Suspense fallback={null}>
+        <Suspense fallback={<div></div>}>
           <FusionTimeChart />
         </Suspense>
       </div>

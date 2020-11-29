@@ -18,19 +18,19 @@ const dataSource = {
       enabled: "1",
       style: {
         "button-text:active": {
-          fill: "rgb(158, 158, 158)"
-        }
-      }
+          fill: "rgb(158, 158, 158)",
+        },
+      },
     },
     customRangeSelector: {
-      enabled: "0"
-    }
+      enabled: "0",
+    },
   },
   // subcaption: {
   //   text: "since 2015"
   // },
   navigator: {
-    enabled: false
+    enabled: false,
   },
   yAxis: [
     {
@@ -38,21 +38,21 @@ const dataSource = {
       plot: [
         {
           value: "Total",
-          type: "column"
-        }
+          type: "column",
+        },
       ],
       format: {
-        suffix: "h"
-      }
-    }
+        suffix: "h",
+      },
+    },
   ],
   xaxis: {
     initialInterval: {
       from: "2019-16-11",
-      to: "2019-21-11"
-    }
+      to: "2019-21-11",
+    },
   },
-  series: "Project"
+  series: "Project",
 };
 
 export default function FusionTimeChart() {
@@ -63,8 +63,8 @@ export default function FusionTimeChart() {
       renderAt: "container",
       width: "100%",
       height: "400",
-      dataSource
-    }
+      dataSource,
+    },
   });
 
   useEffect(() => {
@@ -72,8 +72,8 @@ export default function FusionTimeChart() {
       try {
         const res = await axios.get(process.env.REACT_APP_WAKATIME_URL || "", {
           headers: {
-            "auth-wakatime-data": process.env.REACT_APP_WAKATIME_HEADERS || ""
-          }
+            "auth-wakatime-data": process.env.REACT_APP_WAKATIME_HEADERS || "",
+          },
         });
         const [data, schema]: [WakaData[], WakaSchema] = res.data;
         const fusionTable = new FusionCharts.DataStore().createDataTable(
@@ -88,8 +88,6 @@ export default function FusionTimeChart() {
     };
     onFetchData();
   }, []);
-
-  // if (isLoading) return <p>Loading...</p>;
 
   return (
     <Fragment>

@@ -70,11 +70,17 @@ export default function FusionTimeChart() {
   useEffect(() => {
     const onFetchData = async () => {
       try {
-        const res = await axios.get(process.env.REACT_APP_WAKATIME_URL || "", {
-          headers: {
-            "auth-wakatime-data": process.env.REACT_APP_WAKATIME_HEADERS || "",
-          },
-        });
+        const res = await axios.get(
+          process.env.REACT_APP_WAKATIME_URL ||
+            "https://my-wakatime-dashboard.herokuapp.com/",
+          {
+            headers: {
+              "auth-wakatime-data":
+                process.env.REACT_APP_WAKATIME_HEADERS ||
+                "my-wakatime-data-0138-cad5-40c-03-feea3714",
+            },
+          }
+        );
         const [data, schema]: [WakaData[], WakaSchema] = res.data;
         const fusionTable = new FusionCharts.DataStore().createDataTable(
           data,

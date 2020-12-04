@@ -25,14 +25,14 @@ export default function Projects() {
               <div className="card-link-container">
                 <a
                   className="card-link-item"
-                  href="https://aquaductape.github.io/3n-row/"
+                  href="https://aquaductape.github.io/3nRow/"
                   target="blank"
                 >
                   <FontAwesomeIcon icon={faLink} /> Website
                 </a>
                 <a
                   className="card-link-item"
-                  href="https://github.com/aquaductape/3n-row"
+                  href="https://github.com/aquaductape/3nRow"
                   target="blank"
                 >
                   <FontAwesomeIcon icon={faCode} /> Source Code

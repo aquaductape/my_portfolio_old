@@ -17,7 +17,7 @@
     "css-vars-ponyfill": "^2.1.2",
     "focus-visible": "^5.0.2",
     "fusioncharts": "aquaductape/fusioncharts-dist",
-    "gsap": "^3.0.1",
+    "gsap": "^3.6.0",
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
     "react-app-polyfill": "^1.0.4",
